@@ -7,6 +7,11 @@ export const images = {
     hero: {
       main: "/images/home/hero/hero-main.jpg",
       secondary: "/images/home/hero/hero-secondary.jpg",
+
+      carousel1: "/images/home/hero/carousel1.jpg",
+      carousel2: "/images/home/hero/carousel2.jpg",
+      carousel3: "/images/home/hero/carousel3.jpg",
+      carousel4: "/images/home/hero/carousel4.jpg",
     },
 
     services: {
