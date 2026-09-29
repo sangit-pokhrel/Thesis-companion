@@ -8,12 +8,18 @@ import {
   type ReactNode,
 } from "react";
 
-import type { Language } from "@/lib/i18n";
+import {
+  translations,
+  type Language,
+} from "@/lib/i18n";
+
+type TranslationSection = keyof typeof translations.en;
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (language: Language) => void;
   toggleLanguage: () => void;
+  t: (section: TranslationSection) => Record<string, string>;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
@@ -32,9 +38,9 @@ export function LanguageProvider({
       return "en";
     }
 
-    const savedLanguage = localStorage.getItem("language");
-
-    return savedLanguage === "ne" ? "ne" : "en";
+    return localStorage.getItem("language") === "ne"
+      ? "ne"
+      : "en";
   });
 
   useEffect(() => {
@@ -47,9 +53,15 @@ export function LanguageProvider({
   };
 
   const toggleLanguage = () => {
-    setLanguageState((currentLanguage) =>
-      currentLanguage === "en" ? "ne" : "en"
+    setLanguageState((current) =>
+      current === "en" ? "ne" : "en"
     );
+  };
+
+  const t = (
+    section: TranslationSection
+  ): Record<string, string> => {
+    return translations[language][section] as Record<string, string>;
   };
 
   return (
@@ -58,6 +70,7 @@ export function LanguageProvider({
         language,
         setLanguage,
         toggleLanguage,
+        t,
       }}
     >
       {children}

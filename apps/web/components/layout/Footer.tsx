@@ -1,49 +1,102 @@
+"use client";
+
 import Link from "next/link";
 
+import { useLanguage } from "@/components/language/LanguageProvider";
+
 export default function Footer() {
+  const { t } = useLanguage();
+
+  const nav = t("nav");
+  const footer = t("footer");
+
   return (
     <footer className="border-t border-border bg-primary text-primary-foreground">
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-3 lg:px-8">
-        <div>
-          <h2 className="text-xl font-bold">Thesis Companion</h2>
+      <div className="mx-auto max-w-7xl px-5 py-14 sm:px-6 lg:px-8">
+        <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
+          <div>
+            <Link
+              href="/"
+              className="text-xl font-bold tracking-tight"
+            >
+              Thesis Companion
+            </Link>
 
-          <p className="mt-4 max-w-sm text-sm leading-6 opacity-80">
-            Professional thesis and research support for students and
-            researchers.
-          </p>
-        </div>
+            <p className="mt-5 max-w-md text-sm leading-7 opacity-75">
+              {footer.description}
+            </p>
 
-        <div>
-          <h3 className="font-semibold">Quick Links</h3>
-
-          <div className="mt-4 flex flex-col gap-3 text-sm opacity-80">
-            <Link href="/about">About</Link>
-            <Link href="/services">Services</Link>
-            <Link href="/resources">Resources</Link>
-            <Link href="/contact">Contact</Link>
+            <Link
+              href="/contact"
+              className="mt-6 inline-flex rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90"
+            >
+              {nav.getStarted}
+            </Link>
           </div>
-        </div>
 
-        <div>
-          <h3 className="font-semibold">Get in touch</h3>
+          <div>
+            <h2 className="text-sm font-semibold uppercase tracking-wider">
+              {footer.quickLinks}
+            </h2>
 
-          <p className="mt-4 text-sm leading-6 opacity-80">
-            Have a research project or thesis requirement?
-            <br />
-            Let&apos;s discuss it.
-          </p>
+            <nav className="mt-5 flex flex-col gap-3 text-sm opacity-75">
+              <Link href="/" className="transition-opacity hover:opacity-100">
+                {nav.home}
+              </Link>
 
-          <Link
-            href="/contact"
-            className="mt-5 inline-flex rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground"
-          >
-            Contact Us
-          </Link>
+              <Link
+                href="/about"
+                className="transition-opacity hover:opacity-100"
+              >
+                {nav.about}
+              </Link>
+
+              <Link
+                href="/services"
+                className="transition-opacity hover:opacity-100"
+              >
+                {nav.services}
+              </Link>
+
+              <Link
+                href="/resources"
+                className="transition-opacity hover:opacity-100"
+              >
+                {nav.resources}
+              </Link>
+
+              <Link
+                href="/contact"
+                className="transition-opacity hover:opacity-100"
+              >
+                {nav.contact}
+              </Link>
+            </nav>
+          </div>
+
+          <div>
+            <h2 className="text-sm font-semibold uppercase tracking-wider">
+              {footer.getInTouch}
+            </h2>
+
+            <p className="mt-5 text-sm leading-7 opacity-75">
+              {footer.contactText}
+              <br />
+              {footer.discuss}
+            </p>
+
+            <div className="mt-5 text-sm opacity-75">
+              Thesis Companion
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="border-t border-white/10 px-6 py-5 text-center text-sm opacity-70">
-        © {new Date().getFullYear()} Thesis Companion. All rights reserved.
+      <div className="border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-5 py-5 text-center text-xs opacity-60 sm:px-6 lg:px-8">
+          © {new Date().getFullYear()} Thesis Companion.{" "}
+          {footer.allRights}
+        </div>
       </div>
     </footer>
   );
