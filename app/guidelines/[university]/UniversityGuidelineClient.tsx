@@ -4,12 +4,23 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { useLanguage } from "@/components/language/LanguageProvider";
+import { useMemo, useState } from "react";
 import { localizeUniversity } from "@/lib/guidelineLanguage";
+import { getAcademicUnits } from "@/lib/academicUnits";
 
 export default function UniversityGuidelineClient({ university }: { university: import("@/lib/guidelines").UniversityGuideline }) {
   const { language } = useLanguage();
   const currentUniversity = localizeUniversity(university, language);
   const universityData = currentUniversity;
+  const [unitSearch, setUnitSearch] = useState("");
+  const academicUnits = getAcademicUnits(university.slug);
+  const filteredUnits = useMemo(() => {
+    const query = unitSearch.trim().toLowerCase();
+    if (!query) return academicUnits;
+    return academicUnits.filter((unit) =>
+      `${unit.name} ${unit.nameNe ?? ""} ${unit.parent ?? ""} ${unit.type}`.toLowerCase().includes(query)
+    );
+  }, [academicUnits, unitSearch]);
 
   const navigationItems = universityData.sections.map((section, index) => ({
     id: `section-${index + 1}`,
@@ -122,6 +133,91 @@ export default function UniversityGuidelineClient({ university }: { university: 
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* =====================================================
+          ACADEMIC UNIT DIRECTORY
+      ====================================================== */}
+      <section className="border-y border-border bg-background">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary dark:text-accent">
+                {language === "en" ? "Academic Unit Directory" : "शैक्षिक एकाइ सूची"}
+              </p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                {language === "en" ? "Find your department or academic unit." : "आफ्नो विभाग वा शैक्षिक एकाइ खोज्नुहोस्।"}
+              </h2>
+              <p className="mt-4 leading-7 text-muted-foreground">
+                {language === "en"
+                  ? "Search the university structure below, then open the unit that matches your research programme."
+                  : "तल विश्वविद्यालयको संरचना खोज्नुहोस् र आफ्नो अनुसन्धान कार्यक्रमसँग मिल्ने एकाइ खोल्नुहोस्।"}
+              </p>
+            </div>
+            <div className="shrink-0 rounded-2xl border border-border bg-muted/40 px-5 py-4 text-center">
+              <p className="text-2xl font-bold text-foreground">{academicUnits.length}</p>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                {language === "en" ? "Academic units" : "शैक्षिक एकाइ"}
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-8 relative max-w-3xl">
+            <svg className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-4-4" />
+            </svg>
+            <input
+              value={unitSearch}
+              onChange={(event) => setUnitSearch(event.target.value)}
+              placeholder={language === "en" ? "Search departments, schools, faculties..." : "विभाग, विद्यालय, संकाय खोज्नुहोस्..."}
+              aria-label={language === "en" ? "Search academic units" : "शैक्षिक एकाइ खोज्नुहोस्"}
+              className="h-13 w-full rounded-xl border border-border bg-background pl-12 pr-12 text-sm text-foreground outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10 dark:focus:border-accent dark:focus:ring-accent/10"
+            />
+            {unitSearch && (
+              <button type="button" onClick={() => setUnitSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg px-2 py-1 text-xs font-semibold text-muted-foreground hover:bg-muted hover:text-foreground">
+                {language === "en" ? "Clear" : "हटाउनुहोस्"}
+              </button>
+            )}
+          </div>
+
+          <div className="mt-8 flex items-center justify-between gap-4">
+            <p className="text-sm text-muted-foreground">
+              {filteredUnits.length} {language === "en" ? "result" : "नतिजा"}{filteredUnits.length === 1 ? "" : language === "en" ? "s" : "हरू"}
+            </p>
+            <Link href="/guidelines" className="text-sm font-semibold text-primary transition hover:text-primary/70 dark:text-accent dark:hover:text-accent/80">
+              {language === "en" ? "Change university →" : "विश्वविद्यालय परिवर्तन गर्नुहोस् →"}
+            </Link>
+          </div>
+
+          {filteredUnits.length > 0 ? (
+            <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+              {filteredUnits.map((unit) => (
+                <Link
+                  key={unit.slug}
+                  href={`/guidelines/${university.slug}/${unit.slug}`}
+                  className="group flex min-h-30 items-start justify-between gap-5 rounded-2xl border border-border bg-background p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg dark:hover:border-accent/40"
+                >
+                  <div className="min-w-0">
+                    <span className="inline-flex rounded-md bg-primary/8 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-primary dark:bg-accent/10 dark:text-accent">
+                      {unit.type.replace("academic-unit", language === "en" ? "academic unit" : "शैक्षिक एकाइ")}
+                    </span>
+                    <h3 className="mt-3 font-semibold leading-6 text-foreground">
+                      {language === "en" ? unit.name : unit.nameNe}
+                    </h3>
+                    {unit.parent && <p className="mt-1 text-xs leading-5 text-muted-foreground">{unit.parent}</p>}
+                  </div>
+                  <span className="mt-1 shrink-0 text-lg text-primary transition-transform group-hover:translate-x-1 dark:text-accent" aria-hidden="true">→</span>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-5 rounded-2xl border border-dashed border-border bg-muted/30 px-6 py-12 text-center">
+              <p className="font-semibold text-foreground">{language === "en" ? "No academic unit found." : "कुनै शैक्षिक एकाइ भेटिएन।"}</p>
+              <p className="mt-2 text-sm text-muted-foreground">{language === "en" ? "Try a different department or programme name." : "फरक विभाग वा कार्यक्रमको नाम खोज्नुहोस्।"}</p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -423,6 +519,39 @@ export default function UniversityGuidelineClient({ university }: { university: 
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =====================================================
+          ACADEMIC UNIT DIRECTORY
+      ====================================================== */}
+      <section className="bg-muted/20 py-20 sm:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">
+              {language === "en" ? "ACADEMIC UNIT DIRECTORY" : "शैक्षिक एकाइ सूची"}
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+              {language === "en" ? "Find your department, school or faculty" : "आफ्नो विभाग, स्कुल वा संकाय खोज्नुहोस्"}
+            </h2>
+            <p className="mt-4 leading-7 text-muted-foreground">
+              {language === "en" ? "Select an academic unit to view the university-level research framework together with the official unit source." : "विश्वविद्यालय-स्तरीय अनुसन्धान ढाँचा तथा आधिकारिक एकाइ स्रोत हेर्न सम्बन्धित शैक्षिक एकाइ छनोट गर्नुहोस्।"}
+            </p>
+          </div>
+          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {getAcademicUnits(university.slug).map((unit) => (
+              <Link key={unit.slug} href={`/guidelines/${university.slug}/${unit.slug}`} className="group rounded-xl border border-border bg-background p-5 transition hover:-translate-y-0.5 hover:border-accent/60 hover:shadow-md">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-accent">{unit.type.replace("academic-unit", "academic unit")}</p>
+                    <h3 className="mt-2 font-semibold leading-6">{language === "en" ? unit.name : unit.nameNe}</h3>
+                    {unit.parent ? <p className="mt-1 text-xs text-muted-foreground">{unit.parent}</p> : null}
+                  </div>
+                  <span className="text-accent transition-transform group-hover:translate-x-1">→</span>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
