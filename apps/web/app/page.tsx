@@ -87,6 +87,10 @@ export default function HomePage() {
 
   const [activeSlide, setActiveSlide] = useState(0);
 
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+const [testimonialVisible, setTestimonialVisible] = useState(3);
+const [testimonialPaused, setTestimonialPaused] = useState(false);
+
   const currentHeroSlides = heroSlides[language];
 
   useEffect(() => {
@@ -298,48 +302,193 @@ export default function HomePage() {
     ],
   };
 
-  const testimonials = {
-    en: [
-      {
-        quote:
-          "The research process became much easier to understand once the different stages were clearly structured.",
-        name: "Research Student",
-        role: "Thesis Support",
-      },
-      {
-        quote:
-          "Having clear guidance helped me understand what I needed to work on next.",
-        name: "Postgraduate Student",
-        role: "Research Support",
-      },
-      {
-        quote:
-          "The structured approach made a complex research project feel much more manageable.",
-        name: "University Student",
-        role: "Academic Research",
-      },
-    ],
-    ne: [
-      {
-        quote:
-          "अनुसन्धानका विभिन्न चरणहरू स्पष्ट रूपमा व्यवस्थित भएपछि अनुसन्धान प्रक्रिया बुझ्न धेरै सजिलो भयो।",
-        name: "अनुसन्धान विद्यार्थी",
-        role: "थेसिस सहयोग",
-      },
-      {
-        quote:
-          "स्पष्ट मार्गदर्शनले अब अर्को चरणमा के काम गर्नुपर्छ भन्ने बुझ्न सहयोग गर्यो।",
-        name: "स्नातकोत्तर विद्यार्थी",
-        role: "अनुसन्धान सहयोग",
-      },
-      {
-        quote:
-          "संरचित दृष्टिकोणले जटिल अनुसन्धान परियोजनालाई धेरै व्यवस्थित बनाउन सहयोग गर्यो।",
-        name: "विश्वविद्यालय विद्यार्थी",
-        role: "शैक्षिक अनुसन्धान",
-      },
-    ],
-  };
+ const testimonials = {
+  en: [
+    {
+      quote:
+        "The research process became much easier to understand once the different stages were clearly structured.",
+      name: "Research Student",
+      role: "Thesis Support",
+    },
+    {
+      quote:
+        "Having clear guidance helped me understand what I needed to work on next.",
+      name: "Postgraduate Student",
+      role: "Research Support",
+    },
+    {
+      quote:
+        "The structured approach made a complex research project feel much more manageable.",
+      name: "University Student",
+      role: "Academic Research",
+    },
+    {
+      quote:
+        "Breaking the research journey into clear steps helped me stay focused throughout my project.",
+      name: "Master's Student",
+      role: "Research Methodology",
+    },
+    {
+      quote:
+        "The guidance made it easier to organise my ideas and turn them into a clearer research structure.",
+      name: "Researcher",
+      role: "Academic Writing",
+    },
+    {
+      quote:
+        "Understanding each stage of the research process gave me more confidence to move forward.",
+      name: "Graduate Student",
+      role: "Thesis Development",
+    },
+    {
+      quote:
+        "The support helped me connect my research questions with a more appropriate methodology.",
+      name: "Research Student",
+      role: "Research Methodology",
+    },
+    {
+      quote:
+        "I found it much easier to organise my literature and understand the key themes in my topic.",
+      name: "Postgraduate Researcher",
+      role: "Literature Review",
+    },
+    {
+      quote:
+        "The explanations were clear and practical, which helped me approach my research with greater confidence.",
+      name: "University Student",
+      role: "Academic Support",
+    },
+    {
+      quote:
+        "Having a structured research plan helped me manage the different parts of my thesis more effectively.",
+      name: "Master's Student",
+      role: "Thesis Planning",
+    },
+    {
+      quote:
+        "The research guidance helped me turn a broad idea into a clearer and more focused research direction.",
+      name: "Research Student",
+      role: "Research Planning",
+    },
+    {
+      quote:
+        "The support made the writing process feel more organised and helped improve the overall flow of my work.",
+      name: "Postgraduate Student",
+      role: "Academic Writing",
+    },
+    {
+      quote:
+        "I appreciated having each stage explained clearly instead of trying to manage the whole research process at once.",
+      name: "Graduate Student",
+      role: "Research Support",
+    },
+    {
+      quote:
+        "The structured approach helped me understand how different parts of my research fit together.",
+      name: "University Researcher",
+      role: "Academic Research",
+    },
+    {
+      quote:
+        "Clear guidance throughout the research journey helped me stay organised and make steady progress.",
+      name: "Master's Researcher",
+      role: "Thesis Support",
+    },
+  ],
+
+  ne: [
+    {
+      quote:
+        "अनुसन्धानका विभिन्न चरणहरू स्पष्ट रूपमा व्यवस्थित भएपछि अनुसन्धान प्रक्रिया बुझ्न धेरै सजिलो भयो।",
+      name: "अनुसन्धान विद्यार्थी",
+      role: "थेसिस सहयोग",
+    },
+    {
+      quote:
+        "स्पष्ट मार्गदर्शनले अब अर्को चरणमा के काम गर्नुपर्छ भन्ने बुझ्न सहयोग गर्यो।",
+      name: "स्नातकोत्तर विद्यार्थी",
+      role: "अनुसन्धान सहयोग",
+    },
+    {
+      quote:
+        "संरचित दृष्टिकोणले जटिल अनुसन्धान परियोजनालाई धेरै व्यवस्थित बनाउन सहयोग गर्यो।",
+      name: "विश्वविद्यालय विद्यार्थी",
+      role: "शैक्षिक अनुसन्धान",
+    },
+    {
+      quote:
+        "अनुसन्धान यात्रालाई स्पष्ट चरणहरूमा विभाजन गर्दा आफ्नो काममा केन्द्रित रहन धेरै सजिलो भयो।",
+      name: "स्नातकोत्तर विद्यार्थी",
+      role: "अनुसन्धान विधि",
+    },
+    {
+      quote:
+        "मार्गदर्शनले आफ्ना विचारहरू व्यवस्थित गर्न र स्पष्ट अनुसन्धान संरचना तयार गर्न सहयोग गर्यो।",
+      name: "अनुसन्धानकर्ता",
+      role: "शैक्षिक लेखन",
+    },
+    {
+      quote:
+        "अनुसन्धान प्रक्रियाको प्रत्येक चरण बुझ्दा अगाडि बढ्न थप आत्मविश्वास प्राप्त भयो।",
+      name: "स्नातक विद्यार्थी",
+      role: "थेसिस विकास",
+    },
+    {
+      quote:
+        "अनुसन्धान प्रश्नहरूलाई उपयुक्त अनुसन्धान विधिसँग जोड्न सहयोगले धेरै स्पष्टता दियो।",
+      name: "अनुसन्धान विद्यार्थी",
+      role: "अनुसन्धान विधि",
+    },
+    {
+      quote:
+        "साहित्य समीक्षा व्यवस्थित गर्न र अनुसन्धान विषयका मुख्य पक्षहरू बुझ्न धेरै सहयोग भयो।",
+      name: "स्नातकोत्तर अनुसन्धानकर्ता",
+      role: "साहित्य समीक्षा",
+    },
+    {
+      quote:
+        "स्पष्ट र व्यावहारिक व्याख्याले अनुसन्धान कार्यलाई आत्मविश्वासका साथ अगाडि बढाउन सहयोग गर्यो।",
+      name: "विश्वविद्यालय विद्यार्थी",
+      role: "शैक्षिक सहयोग",
+    },
+    {
+      quote:
+        "संरचित अनुसन्धान योजनाले थेसिसका विभिन्न भागहरूलाई प्रभावकारी रूपमा व्यवस्थापन गर्न सहयोग गर्यो।",
+      name: "स्नातकोत्तर विद्यार्थी",
+      role: "थेसिस योजना",
+    },
+    {
+      quote:
+        "व्यापक अनुसन्धान विचारलाई स्पष्ट र केन्द्रित अनुसन्धान दिशामा परिवर्तन गर्न मार्गदर्शनले सहयोग गर्यो।",
+      name: "अनुसन्धान विद्यार्थी",
+      role: "अनुसन्धान योजना",
+    },
+    {
+      quote:
+        "संरचित सहयोगले लेखन प्रक्रियालाई व्यवस्थित बनाउन र अनुसन्धान कार्यको प्रवाह सुधार गर्न सहयोग गर्यो।",
+      name: "स्नातकोत्तर विद्यार्थी",
+      role: "शैक्षिक लेखन",
+    },
+    {
+      quote:
+        "पूरै अनुसन्धान प्रक्रिया एकैपटक व्यवस्थापन गर्नुभन्दा प्रत्येक चरणलाई स्पष्ट रूपमा बुझ्न धेरै सजिलो भयो।",
+      name: "स्नातक विद्यार्थी",
+      role: "अनुसन्धान सहयोग",
+    },
+    {
+      quote:
+        "अनुसन्धानका विभिन्न भागहरू एकअर्कासँग कसरी सम्बन्धित छन् भन्ने बुझ्न संरचित दृष्टिकोणले सहयोग गर्यो।",
+      name: "विश्वविद्यालय अनुसन्धानकर्ता",
+      role: "शैक्षिक अनुसन्धान",
+    },
+    {
+      quote:
+        "अनुसन्धान यात्राभरि स्पष्ट मार्गदर्शन पाउँदा आफ्नो काम व्यवस्थित राख्न र निरन्तर अगाडि बढ्न सहयोग भयो।",
+      name: "स्नातकोत्तर अनुसन्धानकर्ता",
+      role: "थेसिस सहयोग",
+    },
+  ],
+};
 
   const faqs = {
     en: [
@@ -393,6 +542,69 @@ export default function HomePage() {
   const currentBenefits = benefits[language];
   const currentAreas = areas[language];
   const currentTestimonials = testimonials[language];
+  
+  useEffect(() => {
+  const updateVisibleTestimonials = () => {
+    if (window.innerWidth < 768) {
+      setTestimonialVisible(1);
+    } else if (window.innerWidth < 1024) {
+      setTestimonialVisible(2);
+    } else {
+      setTestimonialVisible(3);
+    }
+  };
+
+  updateVisibleTestimonials();
+
+  window.addEventListener("resize", updateVisibleTestimonials);
+
+  return () => {
+    window.removeEventListener("resize", updateVisibleTestimonials);
+  };
+}, []);
+
+useEffect(() => {
+  if (testimonialPaused) return;
+
+  const maxIndex = Math.max(
+    0,
+    currentTestimonials.length - testimonialVisible
+  );
+
+  const interval = setInterval(() => {
+    setTestimonialIndex((current) =>
+      current >= maxIndex ? 0 : current + 1
+    );
+  }, 3500);
+
+  return () => clearInterval(interval);
+}, [
+  testimonialPaused,
+  testimonialVisible,
+  currentTestimonials.length,
+]);
+
+const goToPreviousTestimonial = () => {
+  const maxIndex = Math.max(
+    0,
+    currentTestimonials.length - testimonialVisible
+  );
+
+  setTestimonialIndex((current) =>
+    current <= 0 ? maxIndex : current - 1
+  );
+};
+
+const goToNextTestimonial = () => {
+  const maxIndex = Math.max(
+    0,
+    currentTestimonials.length - testimonialVisible
+  );
+
+  setTestimonialIndex((current) =>
+    current >= maxIndex ? 0 : current + 1
+  );
+};
   const currentFaqs = faqs[language];
 
   return (
@@ -842,97 +1054,174 @@ export default function HomePage() {
 
       {/* RESEARCH AREAS */}
       <section className="bg-muted/40">
-        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
-            <div className="max-w-xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                {home.researchAreas}
-              </p>
+        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-24">
+          <div className="grid items-center gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
+            {/* LEFT */}
+            <div>
+              {/* Section label */}
+              <div className="flex items-center gap-3">
+                <span className="h-px w-8 bg-primary" />
 
-              <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+                  {home.researchAreas}
+                </p>
+              </div>
+
+              {/* Heading */}
+              <h2 className="mt-5 max-w-md text-4xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-[2.8rem]">
                 {home.researchAreasHeading}
               </h2>
 
-              <div className="relative mt-8 aspect-16/10 overflow-hidden rounded-2xl">
-                <Image
-                  src={images.home.research}
-                  alt={
-                    language === "en"
-                      ? "Research areas"
-                      : "अनुसन्धान क्षेत्रहरू"
-                  }
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover"
-                />
+              {/* Image */}
+              <div className="group relative mt-9 overflow-hidden rounded-[1.4rem]">
+                <div className="relative aspect-16/10">
+                  <Image
+                    src={images.home.research}
+                    alt={
+                      language === "en"
+                        ? "Research areas"
+                        : "अनुसन्धान क्षेत्रहरू"
+                    }
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+
+                  <div className="absolute inset-0 bg-linear-to-t from-black/65 via-black/10 to-transparent" />
+
+                  <div className="absolute bottom-5 left-5">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70">
+                      Research Support
+                    </p>
+
+                    <p className="mt-1 text-base font-semibold text-white">
+                      Across multiple disciplines
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              {currentAreas.map((area, index) => (
-                <div
-                  key={area}
-                  className="group rounded-2xl border border-border bg-background p-7 transition-all hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-bold text-primary">
-                      0{index + 1}
-                    </span>
+            {/* RIGHT — EDITORIAL TIMELINE */}
+            <div className="relative">
+              {/* Small heading */}
+              <div className="mb-6 flex items-center justify-between">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
+                  Research disciplines
+                </p>
 
-                    <span className="text-xl text-muted-foreground transition-transform group-hover:translate-x-1">
-                      →
-                    </span>
-                  </div>
+                <span className="text-xs font-medium text-muted-foreground">
+                  01 — 06
+                </span>
+              </div>
 
-                  <h3 className="mt-12 text-lg font-semibold text-foreground">
-                    {area}
-                  </h3>
+              {/* Timeline */}
+              <div className="relative">
+                {/* Main vertical line */}
+                <div className="absolute bottom-0 left-4.75 top-0 w-px bg-border" />
+
+                <div>
+                  {currentAreas.map((area, index) => (
+                    <div
+                      key={area}
+                      className="group relative flex items-center border-b border-border py-5 first:border-t"
+                    >
+                      {/* Number */}
+                      <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-background">
+                        <span className="text-[10px] font-bold tracking-wide text-primary">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+
+                      {/* Content */}
+                      <div className="ml-7 flex flex-1 items-center justify-between">
+                        <h3 className="text-lg font-semibold tracking-tight text-foreground transition-transform duration-300 group-hover:translate-x-1 sm:text-xl">
+                          {area}
+                        </h3>
+
+                        {/* Small accent */}
+                        <span className="ml-6 h-px w-0 bg-primary transition-all duration-300 group-hover:w-8" />
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="bg-background">
-        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <div className="text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-              {home.experiences}
-            </p>
+      {/* TESTIMONIALS */}
+<section className="bg-background">
+  <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
 
-            <h2 className="mx-auto mt-4 max-w-2xl text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              {home.experiencesHeading}
-            </h2>
-          </div>
+    {/* HEADER */}
+    <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <div className="max-w-2xl">
+        <div className="flex items-center gap-3">
+          <span className="h-px w-8 bg-primary" />
 
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
-            {currentTestimonials.map((testimonial, index) => (
-              <figure
-                key={testimonial.name}
-                className="overflow-hidden rounded-2xl border border-border bg-muted/40"
-              >
-                {index === 0 && (
-                  <div className="relative aspect-16/8">
-                    <Image
-                      src={images.home.testimonials}
-                      alt="Research student experience"
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 33vw"
-                      className="object-cover"
-                    />
-                  </div>
-                )}
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+            {home.experiences}
+          </p>
+        </div>
 
-                <div className="p-8">
-                  <div className="text-3xl text-accent">“</div>
+        <h2 className="mt-5 max-w-2xl text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+          {home.experiencesHeading}
+        </h2>
+      </div>
 
-                  <blockquote className="mt-3 text-base leading-7 text-foreground">
-                    {testimonial.quote}
-                  </blockquote>
+      {/* Counter */}
+      <div className="hidden items-center gap-3 text-xs font-medium tracking-[0.15em] text-muted-foreground sm:flex">
+        <span>
+          {String(testimonialIndex + 1).padStart(2, "0")}
+        </span>
 
-                  <figcaption className="mt-8 border-t border-border pt-5">
+        <span className="h-px w-8 bg-border" />
+
+        <span>
+          {String(currentTestimonials.length).padStart(2, "0")}
+        </span>
+      </div>
+    </div>
+
+    {/* CAROUSEL */}
+    <div
+      className="relative mt-12 overflow-hidden"
+      onMouseEnter={() => setTestimonialPaused(true)}
+      onMouseLeave={() => setTestimonialPaused(false)}
+    >
+      <div
+        className="flex transition-transform duration-700 ease-out"
+        style={{
+          transform: `translateX(-${
+            testimonialIndex * (100 / testimonialVisible)
+          }%)`,
+        }}
+      >
+        {currentTestimonials.map((testimonial, index) => (
+          <div
+            key={`${testimonial.name}-${index}`}
+            className="w-full shrink-0 basis-full px-2 md:basis-1/2 lg:basis-1/3"
+          >
+            <figure className="group flex h-full min-h-77.5 flex-col justify-between rounded-2xl border border-border bg-muted/40 p-7 transition-all duration-300 hover:border-primary/20 hover:bg-muted/60 sm:p-8">
+
+              {/* Quote */}
+              <div>
+                <div className="text-5xl font-serif leading-none text-accent/80">
+                  “
+                </div>
+
+                <blockquote className="mt-5 text-base leading-7 text-foreground sm:text-[17px]">
+                  {testimonial.quote}
+                </blockquote>
+              </div>
+
+              {/* Author */}
+              <figcaption className="mt-10 border-t border-border pt-5">
+                <div className="flex items-end justify-between gap-4">
+                  <div>
                     <p className="text-sm font-semibold text-foreground">
                       {testimonial.name}
                     </p>
@@ -940,13 +1229,71 @@ export default function HomePage() {
                     <p className="mt-1 text-xs text-muted-foreground">
                       {testimonial.role}
                     </p>
-                  </figcaption>
+                  </div>
+
+                  <span className="text-xs font-bold tracking-[0.15em] text-primary">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                 </div>
-              </figure>
-            ))}
+              </figcaption>
+            </figure>
           </div>
-        </div>
-      </section>
+        ))}
+      </div>
+    </div>
+
+    {/* CONTROLS */}
+    <div className="mt-8 flex items-center justify-between">
+
+      {/* Progress */}
+      <div className="flex items-center gap-2">
+        {currentTestimonials.map((_, index) => (
+          <button
+            key={index}
+            type="button"
+            aria-label={`Go to testimonial ${index + 1}`}
+            onClick={() => {
+              const maxIndex = Math.max(
+                0,
+                currentTestimonials.length - testimonialVisible
+              );
+
+              setTestimonialIndex(Math.min(index, maxIndex));
+            }}
+            className={`h-1 rounded-full transition-all duration-500 ${
+              index >= testimonialIndex &&
+              index < testimonialIndex + testimonialVisible
+                ? "w-8 bg-primary"
+                : "w-2 bg-border hover:bg-muted-foreground"
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Previous / Next */}
+      <div className="flex items-center gap-2">
+        <button
+          type="button"
+          onClick={goToPreviousTestimonial}
+          aria-label="Previous testimonials"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-foreground transition-all duration-300 hover:border-primary hover:bg-primary hover:text-primary-foreground"
+        >
+          ←
+        </button>
+
+        <button
+          type="button"
+          onClick={goToNextTestimonial}
+          aria-label="Next testimonials"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-foreground transition-all duration-300 hover:border-primary hover:bg-primary hover:text-primary-foreground"
+        >
+          →
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
 
       {/* FAQ */}
       <section className="bg-muted/40">
