@@ -170,6 +170,7 @@ export default function Navbar() {
                 fill
                 priority
                 sizes="40px"
+                unoptimized
                 className="object-cover"
               />
             </div>
