@@ -986,64 +986,128 @@ export default function HomePage() {
       </section>
 
       {/* WHY US */}
-      <section className="bg-background">
-        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-            <div className="max-w-xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                {home.whyUs}
-              </p>
+     {/* WHY US */}
+<section className="bg-background">
+  <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-32">
 
-              <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-                {home.whyHeading}
-              </h2>
+    {/* TOP INTRO */}
+    <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
 
-              <div className="mt-9 space-y-5">
-                {currentBenefits.map((benefit, index) => (
-                  <div
-                    key={benefit}
-                    className="flex items-start gap-4 border-b border-border pb-5 last:border-0"
-                  >
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-bold text-accent-foreground">
-                      {index + 1}
-                    </span>
+      <div className="lg:col-span-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+          {home.whyUs}
+        </p>
 
-                    <p className="pt-1 text-base font-medium text-foreground">
-                      {benefit}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
+        <div className="mt-5 h-px w-16 bg-accent" />
+      </div>
 
-            <div className="relative">
-              <div className="relative aspect-4/5 overflow-hidden rounded-4xl bg-muted">
-                <Image
-                  src={images.home.whyUs}
-                  alt={
-                    language === "en"
-                      ? "Student working on academic research"
-                      : "शैक्षिक अनुसन्धानमा काम गर्दै विद्यार्थी"
-                  }
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 45vw"
-                  className="object-cover"
-                />
-              </div>
+      <div className="lg:col-span-8">
+        <h2 className="max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.04em] text-foreground sm:text-5xl lg:text-6xl">
+          {home.whyHeading}
+        </h2>
+      </div>
+    </div>
 
-              <div className="absolute -bottom-6 -left-5 rounded-xl bg-accent p-5 shadow-xl sm:left-6">
-                <p className="text-xs font-semibold uppercase tracking-wider text-accent-foreground/70">
-                  {language === "en" ? "Our focus" : "हाम्रो केन्द्रबिन्दु"}
-                </p>
+    {/* MAIN VISUAL AREA */}
+    <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:gap-16">
 
-                <p className="mt-1 text-lg font-bold text-accent-foreground">
-                  {language === "en" ? "Your research" : "तपाईंको अनुसन्धान"}
-                </p>
-              </div>
-            </div>
+      {/* IMAGE */}
+      <div className="relative lg:col-span-7">
+
+        <div className="relative overflow-hidden rounded-[2rem]">
+          <div className="relative aspect-[16/11]">
+            <Image
+              src={images.home.whyUs}
+              alt={
+                language === "en"
+                  ? "Student working on academic research"
+                  : "शैक्षिक अनुसन्धानमा काम गर्दै विद्यार्थी"
+              }
+              fill
+              sizes="(max-width: 1024px) 100vw, 58vw"
+              className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+            />
           </div>
         </div>
-      </section>
+
+        {/* Small cropped detail */}
+        <div className="absolute -bottom-8 -right-5 hidden w-40 overflow-hidden rounded-2xl border-8 border-background shadow-xl sm:block">
+          <div className="relative aspect-square">
+            <Image
+              src={images.home.whyUs}
+              alt=""
+              fill
+              sizes="160px"
+              className="scale-[1.6] object-cover"
+            />
+          </div>
+        </div>
+
+      </div>
+
+      {/* BENEFITS */}
+      <div className="flex flex-col justify-between lg:col-span-5">
+
+        <div>
+          {currentBenefits.map((benefit, index) => (
+            <div
+              key={benefit}
+              className="group border-t border-border py-6 last:border-b"
+            >
+              <div className="flex items-start gap-5">
+
+                <span className="pt-1 text-xs font-medium text-muted-foreground">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <div className="flex-1">
+                  <p className="text-lg font-medium leading-7 text-foreground transition-colors duration-300 group-hover:text-primary">
+                    {benefit}
+                  </p>
+                </div>
+
+                <span className="pt-1 text-muted-foreground transition-transform duration-300 group-hover:translate-x-1">
+                  ↗
+                </span>
+
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Supporting copy */}
+        <div className="mt-10 max-w-sm">
+          <p className="text-sm leading-6 text-muted-foreground">
+            {language === "en"
+              ? "From the first research idea to the final outcome, every stage is approached with clarity and purpose."
+              : "पहिलो अनुसन्धान विचारदेखि अन्तिम नतिजासम्म हरेक चरणलाई स्पष्टता र उद्देश्यका साथ अघि बढाइन्छ।"}
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    {/* BOTTOM STATEMENT */}
+    <div className="mt-16 flex flex-col gap-4 border-t border-border pt-5 sm:flex-row sm:items-center sm:justify-between">
+
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+        {language === "en"
+          ? "A better way to approach research"
+          : "अनुसन्धानलाई अघि बढाउने अझ राम्रो तरिका"}
+      </p>
+
+      <div className="flex items-center gap-3">
+        <span className="h-px w-10 bg-accent" />
+
+        <span className="text-xs text-muted-foreground">
+          Thesis Companion
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+</section>
 
       {/* RESEARCH AREAS */}
       <section className="bg-muted/40">

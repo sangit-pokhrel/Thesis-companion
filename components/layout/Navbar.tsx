@@ -119,7 +119,14 @@ export default function Navbar() {
   return (
     <header className="fixed left-0 right-0 top-0 z-50 px-3 pt-3 sm:px-4 lg:px-6">
       {/* Subtle ambient accent */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-20 bg-linear-to-b from-accent/5 to-transparent dark:from-accent/6" />
+      <div
+        className=" pointer-events-none
+    absolute inset-x-0 top-0
+    h-5
+    bg-background/10
+    backdrop-blur-[2px]
+    dark:bg-background/10"
+      />
 
       <div className="mx-auto max-w-7xl">
         {/* =====================================================
@@ -409,7 +416,9 @@ export default function Navbar() {
 
                             {/* University name */}
                             <span className="flex-1 text-[13px] font-medium">
-                              {language === "en" ? university.name : university.nameNe}
+                              {language === "en"
+                                ? university.name
+                                : university.nameNe}
                             </span>
 
                             {/* Arrow */}
@@ -719,7 +728,11 @@ export default function Navbar() {
                               {university.shortName}
                             </span>
 
-                            <span>{language === "en" ? university.name : university.nameNe}</span>
+                            <span>
+                              {language === "en"
+                                ? university.name
+                                : university.nameNe}
+                            </span>
                           </Link>
                         );
                       })}
