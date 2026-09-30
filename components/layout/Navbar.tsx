@@ -123,7 +123,7 @@ export default function Navbar() {
 
       <div className="mx-auto max-w-7xl">
         {/* =====================================================
-            MAIN NAVBAR
+            MAIN NAVBAR nav
         ====================================================== */}
         <div
           className="
