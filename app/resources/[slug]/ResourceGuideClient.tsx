@@ -67,7 +67,7 @@ export default function ResourceGuideClient({
           <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
             <div>
               <div className="flex flex-wrap items-center gap-3">
-                <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+                <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
                   {ui.guide}
                 </span>
 
@@ -112,7 +112,7 @@ export default function ResourceGuideClient({
             {/* Table of contents */}
             <aside className="lg:sticky lg:top-24">
               <div className="rounded-2xl border border-border bg-background p-6">
-                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-primary">
+                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">
                   {ui.tableOfContents}
                 </p>
 
@@ -129,7 +129,7 @@ export default function ResourceGuideClient({
 
                   <a
                     href="#quick-checklist"
-                    className="block text-sm font-semibold leading-6 text-primary"
+                    className="block text-sm font-semibold leading-6 text-muted-foreground"
                   >
                     {content.sections.length + 1}. {ui.quickChecklist}
                   </a>
@@ -146,7 +146,7 @@ export default function ResourceGuideClient({
                     id={`section-${index + 1}`}
                     className="scroll-mt-24"
                   >
-                    <p className="text-sm font-semibold text-primary">
+                    <p className="text-sm font-semibold text-muted-foreground">
                       {String(index + 1).padStart(2, "0")}
                     </p>
 
@@ -166,7 +166,7 @@ export default function ResourceGuideClient({
                 id="quick-checklist"
                 className="mt-14 scroll-mt-24 rounded-2xl border border-border bg-background p-7 sm:p-8"
               >
-                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-primary">
+                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">
                   {ui.quickChecklist}
                 </p>
 
@@ -197,7 +197,7 @@ export default function ResourceGuideClient({
       <section className="border-t border-border bg-background">
         <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-24">
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
               {ui.related}
             </p>
           </div>
@@ -220,7 +220,7 @@ export default function ResourceGuideClient({
                 </div>
 
                 <div className="p-6">
-                  <span className="text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+                  <span className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
                     {item.category[language]}
                   </span>
 
@@ -232,7 +232,7 @@ export default function ResourceGuideClient({
                     {item[language].description}
                   </p>
 
-                  <span className="mt-5 inline-block text-sm font-semibold text-primary transition-transform group-hover:translate-x-1">
+                  <span className="mt-5 inline-block text-sm font-semibold text-muted-foreground transition-transform group-hover:translate-x-1">
                     {language === "en" ? "Read guide →" : "गाइड पढ्नुहोस् →"}
                   </span>
                 </div>

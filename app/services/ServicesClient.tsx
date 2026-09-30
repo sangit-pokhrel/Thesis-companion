@@ -415,7 +415,7 @@ export default function ServicesClient() {
                         dark:hover:bg-accent/90
                       "
                     >
-                      {language === "en" ? "Discuss this service" : "यस सेवाबारे छलफल गर्नुहोस्"}
+                      {language === "en" ? "Discuss " : "छलफल "}
                       <span className="ml-2 transition-transform duration-200">
                         →
                       </span>

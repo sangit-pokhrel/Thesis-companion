@@ -98,7 +98,7 @@ export default function ResourcesClient() {
       <section className="bg-muted/40">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
               {resources.featured}
             </p>
 
@@ -129,7 +129,7 @@ export default function ResourcesClient() {
 
                   <div className="flex flex-1 flex-col p-7">
                     <div className="flex items-center justify-between gap-4">
-                      <span className="text-sm font-semibold text-primary">
+                      <span className="text-sm font-semibold text-muted-foreground">
                         {resource.number}
                       </span>
 
@@ -147,7 +147,7 @@ export default function ResourcesClient() {
                     </p>
 
                     <div className="mt-7 border-t border-border pt-5">
-                      <span className="inline-block text-sm font-semibold text-primary transition-transform group-hover:translate-x-1">
+                      <span className="inline-block text-sm font-semibold text-muted-foreground transition-transform group-hover:translate-x-1">
                         {common.readGuide} →
                       </span>
                     </div>
