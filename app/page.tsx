@@ -88,8 +88,8 @@ export default function HomePage() {
   const [activeSlide, setActiveSlide] = useState(0);
 
   const [testimonialIndex, setTestimonialIndex] = useState(0);
-const [testimonialVisible, setTestimonialVisible] = useState(3);
-const [testimonialPaused, setTestimonialPaused] = useState(false);
+  const [testimonialVisible, setTestimonialVisible] = useState(3);
+  const [testimonialPaused, setTestimonialPaused] = useState(false);
 
   const currentHeroSlides = heroSlides[language];
 
@@ -302,193 +302,193 @@ const [testimonialPaused, setTestimonialPaused] = useState(false);
     ],
   };
 
- const testimonials = {
-  en: [
-    {
-      quote:
-        "The research process became much easier to understand once the different stages were clearly structured.",
-      name: "Research Student",
-      role: "Thesis Support",
-    },
-    {
-      quote:
-        "Having clear guidance helped me understand what I needed to work on next.",
-      name: "Postgraduate Student",
-      role: "Research Support",
-    },
-    {
-      quote:
-        "The structured approach made a complex research project feel much more manageable.",
-      name: "University Student",
-      role: "Academic Research",
-    },
-    {
-      quote:
-        "Breaking the research journey into clear steps helped me stay focused throughout my project.",
-      name: "Master's Student",
-      role: "Research Methodology",
-    },
-    {
-      quote:
-        "The guidance made it easier to organise my ideas and turn them into a clearer research structure.",
-      name: "Researcher",
-      role: "Academic Writing",
-    },
-    {
-      quote:
-        "Understanding each stage of the research process gave me more confidence to move forward.",
-      name: "Graduate Student",
-      role: "Thesis Development",
-    },
-    {
-      quote:
-        "The support helped me connect my research questions with a more appropriate methodology.",
-      name: "Research Student",
-      role: "Research Methodology",
-    },
-    {
-      quote:
-        "I found it much easier to organise my literature and understand the key themes in my topic.",
-      name: "Postgraduate Researcher",
-      role: "Literature Review",
-    },
-    {
-      quote:
-        "The explanations were clear and practical, which helped me approach my research with greater confidence.",
-      name: "University Student",
-      role: "Academic Support",
-    },
-    {
-      quote:
-        "Having a structured research plan helped me manage the different parts of my thesis more effectively.",
-      name: "Master's Student",
-      role: "Thesis Planning",
-    },
-    {
-      quote:
-        "The research guidance helped me turn a broad idea into a clearer and more focused research direction.",
-      name: "Research Student",
-      role: "Research Planning",
-    },
-    {
-      quote:
-        "The support made the writing process feel more organised and helped improve the overall flow of my work.",
-      name: "Postgraduate Student",
-      role: "Academic Writing",
-    },
-    {
-      quote:
-        "I appreciated having each stage explained clearly instead of trying to manage the whole research process at once.",
-      name: "Graduate Student",
-      role: "Research Support",
-    },
-    {
-      quote:
-        "The structured approach helped me understand how different parts of my research fit together.",
-      name: "University Researcher",
-      role: "Academic Research",
-    },
-    {
-      quote:
-        "Clear guidance throughout the research journey helped me stay organised and make steady progress.",
-      name: "Master's Researcher",
-      role: "Thesis Support",
-    },
-  ],
+  const testimonials = {
+    en: [
+      {
+        quote:
+          "The research process became much easier to understand once the different stages were clearly structured.",
+        name: "Research Student",
+        role: "Thesis Support",
+      },
+      {
+        quote:
+          "Having clear guidance helped me understand what I needed to work on next.",
+        name: "Postgraduate Student",
+        role: "Research Support",
+      },
+      {
+        quote:
+          "The structured approach made a complex research project feel much more manageable.",
+        name: "University Student",
+        role: "Academic Research",
+      },
+      {
+        quote:
+          "Breaking the research journey into clear steps helped me stay focused throughout my project.",
+        name: "Master's Student",
+        role: "Research Methodology",
+      },
+      {
+        quote:
+          "The guidance made it easier to organise my ideas and turn them into a clearer research structure.",
+        name: "Researcher",
+        role: "Academic Writing",
+      },
+      {
+        quote:
+          "Understanding each stage of the research process gave me more confidence to move forward.",
+        name: "Graduate Student",
+        role: "Thesis Development",
+      },
+      {
+        quote:
+          "The support helped me connect my research questions with a more appropriate methodology.",
+        name: "Research Student",
+        role: "Research Methodology",
+      },
+      {
+        quote:
+          "I found it much easier to organise my literature and understand the key themes in my topic.",
+        name: "Postgraduate Researcher",
+        role: "Literature Review",
+      },
+      {
+        quote:
+          "The explanations were clear and practical, which helped me approach my research with greater confidence.",
+        name: "University Student",
+        role: "Academic Support",
+      },
+      {
+        quote:
+          "Having a structured research plan helped me manage the different parts of my thesis more effectively.",
+        name: "Master's Student",
+        role: "Thesis Planning",
+      },
+      {
+        quote:
+          "The research guidance helped me turn a broad idea into a clearer and more focused research direction.",
+        name: "Research Student",
+        role: "Research Planning",
+      },
+      {
+        quote:
+          "The support made the writing process feel more organised and helped improve the overall flow of my work.",
+        name: "Postgraduate Student",
+        role: "Academic Writing",
+      },
+      {
+        quote:
+          "I appreciated having each stage explained clearly instead of trying to manage the whole research process at once.",
+        name: "Graduate Student",
+        role: "Research Support",
+      },
+      {
+        quote:
+          "The structured approach helped me understand how different parts of my research fit together.",
+        name: "University Researcher",
+        role: "Academic Research",
+      },
+      {
+        quote:
+          "Clear guidance throughout the research journey helped me stay organised and make steady progress.",
+        name: "Master's Researcher",
+        role: "Thesis Support",
+      },
+    ],
 
-  ne: [
-    {
-      quote:
-        "अनुसन्धानका विभिन्न चरणहरू स्पष्ट रूपमा व्यवस्थित भएपछि अनुसन्धान प्रक्रिया बुझ्न धेरै सजिलो भयो।",
-      name: "अनुसन्धान विद्यार्थी",
-      role: "थेसिस सहयोग",
-    },
-    {
-      quote:
-        "स्पष्ट मार्गदर्शनले अब अर्को चरणमा के काम गर्नुपर्छ भन्ने बुझ्न सहयोग गर्यो।",
-      name: "स्नातकोत्तर विद्यार्थी",
-      role: "अनुसन्धान सहयोग",
-    },
-    {
-      quote:
-        "संरचित दृष्टिकोणले जटिल अनुसन्धान परियोजनालाई धेरै व्यवस्थित बनाउन सहयोग गर्यो।",
-      name: "विश्वविद्यालय विद्यार्थी",
-      role: "शैक्षिक अनुसन्धान",
-    },
-    {
-      quote:
-        "अनुसन्धान यात्रालाई स्पष्ट चरणहरूमा विभाजन गर्दा आफ्नो काममा केन्द्रित रहन धेरै सजिलो भयो।",
-      name: "स्नातकोत्तर विद्यार्थी",
-      role: "अनुसन्धान विधि",
-    },
-    {
-      quote:
-        "मार्गदर्शनले आफ्ना विचारहरू व्यवस्थित गर्न र स्पष्ट अनुसन्धान संरचना तयार गर्न सहयोग गर्यो।",
-      name: "अनुसन्धानकर्ता",
-      role: "शैक्षिक लेखन",
-    },
-    {
-      quote:
-        "अनुसन्धान प्रक्रियाको प्रत्येक चरण बुझ्दा अगाडि बढ्न थप आत्मविश्वास प्राप्त भयो।",
-      name: "स्नातक विद्यार्थी",
-      role: "थेसिस विकास",
-    },
-    {
-      quote:
-        "अनुसन्धान प्रश्नहरूलाई उपयुक्त अनुसन्धान विधिसँग जोड्न सहयोगले धेरै स्पष्टता दियो।",
-      name: "अनुसन्धान विद्यार्थी",
-      role: "अनुसन्धान विधि",
-    },
-    {
-      quote:
-        "साहित्य समीक्षा व्यवस्थित गर्न र अनुसन्धान विषयका मुख्य पक्षहरू बुझ्न धेरै सहयोग भयो।",
-      name: "स्नातकोत्तर अनुसन्धानकर्ता",
-      role: "साहित्य समीक्षा",
-    },
-    {
-      quote:
-        "स्पष्ट र व्यावहारिक व्याख्याले अनुसन्धान कार्यलाई आत्मविश्वासका साथ अगाडि बढाउन सहयोग गर्यो।",
-      name: "विश्वविद्यालय विद्यार्थी",
-      role: "शैक्षिक सहयोग",
-    },
-    {
-      quote:
-        "संरचित अनुसन्धान योजनाले थेसिसका विभिन्न भागहरूलाई प्रभावकारी रूपमा व्यवस्थापन गर्न सहयोग गर्यो।",
-      name: "स्नातकोत्तर विद्यार्थी",
-      role: "थेसिस योजना",
-    },
-    {
-      quote:
-        "व्यापक अनुसन्धान विचारलाई स्पष्ट र केन्द्रित अनुसन्धान दिशामा परिवर्तन गर्न मार्गदर्शनले सहयोग गर्यो।",
-      name: "अनुसन्धान विद्यार्थी",
-      role: "अनुसन्धान योजना",
-    },
-    {
-      quote:
-        "संरचित सहयोगले लेखन प्रक्रियालाई व्यवस्थित बनाउन र अनुसन्धान कार्यको प्रवाह सुधार गर्न सहयोग गर्यो।",
-      name: "स्नातकोत्तर विद्यार्थी",
-      role: "शैक्षिक लेखन",
-    },
-    {
-      quote:
-        "पूरै अनुसन्धान प्रक्रिया एकैपटक व्यवस्थापन गर्नुभन्दा प्रत्येक चरणलाई स्पष्ट रूपमा बुझ्न धेरै सजिलो भयो।",
-      name: "स्नातक विद्यार्थी",
-      role: "अनुसन्धान सहयोग",
-    },
-    {
-      quote:
-        "अनुसन्धानका विभिन्न भागहरू एकअर्कासँग कसरी सम्बन्धित छन् भन्ने बुझ्न संरचित दृष्टिकोणले सहयोग गर्यो।",
-      name: "विश्वविद्यालय अनुसन्धानकर्ता",
-      role: "शैक्षिक अनुसन्धान",
-    },
-    {
-      quote:
-        "अनुसन्धान यात्राभरि स्पष्ट मार्गदर्शन पाउँदा आफ्नो काम व्यवस्थित राख्न र निरन्तर अगाडि बढ्न सहयोग भयो।",
-      name: "स्नातकोत्तर अनुसन्धानकर्ता",
-      role: "थेसिस सहयोग",
-    },
-  ],
-};
+    ne: [
+      {
+        quote:
+          "अनुसन्धानका विभिन्न चरणहरू स्पष्ट रूपमा व्यवस्थित भएपछि अनुसन्धान प्रक्रिया बुझ्न धेरै सजिलो भयो।",
+        name: "अनुसन्धान विद्यार्थी",
+        role: "थेसिस सहयोग",
+      },
+      {
+        quote:
+          "स्पष्ट मार्गदर्शनले अब अर्को चरणमा के काम गर्नुपर्छ भन्ने बुझ्न सहयोग गर्यो।",
+        name: "स्नातकोत्तर विद्यार्थी",
+        role: "अनुसन्धान सहयोग",
+      },
+      {
+        quote:
+          "संरचित दृष्टिकोणले जटिल अनुसन्धान परियोजनालाई धेरै व्यवस्थित बनाउन सहयोग गर्यो।",
+        name: "विश्वविद्यालय विद्यार्थी",
+        role: "शैक्षिक अनुसन्धान",
+      },
+      {
+        quote:
+          "अनुसन्धान यात्रालाई स्पष्ट चरणहरूमा विभाजन गर्दा आफ्नो काममा केन्द्रित रहन धेरै सजिलो भयो।",
+        name: "स्नातकोत्तर विद्यार्थी",
+        role: "अनुसन्धान विधि",
+      },
+      {
+        quote:
+          "मार्गदर्शनले आफ्ना विचारहरू व्यवस्थित गर्न र स्पष्ट अनुसन्धान संरचना तयार गर्न सहयोग गर्यो।",
+        name: "अनुसन्धानकर्ता",
+        role: "शैक्षिक लेखन",
+      },
+      {
+        quote:
+          "अनुसन्धान प्रक्रियाको प्रत्येक चरण बुझ्दा अगाडि बढ्न थप आत्मविश्वास प्राप्त भयो।",
+        name: "स्नातक विद्यार्थी",
+        role: "थेसिस विकास",
+      },
+      {
+        quote:
+          "अनुसन्धान प्रश्नहरूलाई उपयुक्त अनुसन्धान विधिसँग जोड्न सहयोगले धेरै स्पष्टता दियो।",
+        name: "अनुसन्धान विद्यार्थी",
+        role: "अनुसन्धान विधि",
+      },
+      {
+        quote:
+          "साहित्य समीक्षा व्यवस्थित गर्न र अनुसन्धान विषयका मुख्य पक्षहरू बुझ्न धेरै सहयोग भयो।",
+        name: "स्नातकोत्तर अनुसन्धानकर्ता",
+        role: "साहित्य समीक्षा",
+      },
+      {
+        quote:
+          "स्पष्ट र व्यावहारिक व्याख्याले अनुसन्धान कार्यलाई आत्मविश्वासका साथ अगाडि बढाउन सहयोग गर्यो।",
+        name: "विश्वविद्यालय विद्यार्थी",
+        role: "शैक्षिक सहयोग",
+      },
+      {
+        quote:
+          "संरचित अनुसन्धान योजनाले थेसिसका विभिन्न भागहरूलाई प्रभावकारी रूपमा व्यवस्थापन गर्न सहयोग गर्यो।",
+        name: "स्नातकोत्तर विद्यार्थी",
+        role: "थेसिस योजना",
+      },
+      {
+        quote:
+          "व्यापक अनुसन्धान विचारलाई स्पष्ट र केन्द्रित अनुसन्धान दिशामा परिवर्तन गर्न मार्गदर्शनले सहयोग गर्यो।",
+        name: "अनुसन्धान विद्यार्थी",
+        role: "अनुसन्धान योजना",
+      },
+      {
+        quote:
+          "संरचित सहयोगले लेखन प्रक्रियालाई व्यवस्थित बनाउन र अनुसन्धान कार्यको प्रवाह सुधार गर्न सहयोग गर्यो।",
+        name: "स्नातकोत्तर विद्यार्थी",
+        role: "शैक्षिक लेखन",
+      },
+      {
+        quote:
+          "पूरै अनुसन्धान प्रक्रिया एकैपटक व्यवस्थापन गर्नुभन्दा प्रत्येक चरणलाई स्पष्ट रूपमा बुझ्न धेरै सजिलो भयो।",
+        name: "स्नातक विद्यार्थी",
+        role: "अनुसन्धान सहयोग",
+      },
+      {
+        quote:
+          "अनुसन्धानका विभिन्न भागहरू एकअर्कासँग कसरी सम्बन्धित छन् भन्ने बुझ्न संरचित दृष्टिकोणले सहयोग गर्यो।",
+        name: "विश्वविद्यालय अनुसन्धानकर्ता",
+        role: "शैक्षिक अनुसन्धान",
+      },
+      {
+        quote:
+          "अनुसन्धान यात्राभरि स्पष्ट मार्गदर्शन पाउँदा आफ्नो काम व्यवस्थित राख्न र निरन्तर अगाडि बढ्न सहयोग भयो।",
+        name: "स्नातकोत्तर अनुसन्धानकर्ता",
+        role: "थेसिस सहयोग",
+      },
+    ],
+  };
 
   const faqs = {
     en: [
@@ -542,69 +542,59 @@ const [testimonialPaused, setTestimonialPaused] = useState(false);
   const currentBenefits = benefits[language];
   const currentAreas = areas[language];
   const currentTestimonials = testimonials[language];
-  
+
   useEffect(() => {
-  const updateVisibleTestimonials = () => {
-    if (window.innerWidth < 768) {
-      setTestimonialVisible(1);
-    } else if (window.innerWidth < 1024) {
-      setTestimonialVisible(2);
-    } else {
-      setTestimonialVisible(3);
-    }
-  };
+    const updateVisibleTestimonials = () => {
+      if (window.innerWidth < 768) {
+        setTestimonialVisible(1);
+      } else if (window.innerWidth < 1024) {
+        setTestimonialVisible(2);
+      } else {
+        setTestimonialVisible(3);
+      }
+    };
 
-  updateVisibleTestimonials();
+    updateVisibleTestimonials();
 
-  window.addEventListener("resize", updateVisibleTestimonials);
+    window.addEventListener("resize", updateVisibleTestimonials);
 
-  return () => {
-    window.removeEventListener("resize", updateVisibleTestimonials);
-  };
-}, []);
+    return () => {
+      window.removeEventListener("resize", updateVisibleTestimonials);
+    };
+  }, []);
 
-useEffect(() => {
-  if (testimonialPaused) return;
+  useEffect(() => {
+    if (testimonialPaused) return;
 
-  const maxIndex = Math.max(
-    0,
-    currentTestimonials.length - testimonialVisible
-  );
-
-  const interval = setInterval(() => {
-    setTestimonialIndex((current) =>
-      current >= maxIndex ? 0 : current + 1
+    const maxIndex = Math.max(
+      0,
+      currentTestimonials.length - testimonialVisible,
     );
-  }, 3500);
 
-  return () => clearInterval(interval);
-}, [
-  testimonialPaused,
-  testimonialVisible,
-  currentTestimonials.length,
-]);
+    const interval = setInterval(() => {
+      setTestimonialIndex((current) => (current >= maxIndex ? 0 : current + 1));
+    }, 3500);
 
-const goToPreviousTestimonial = () => {
-  const maxIndex = Math.max(
-    0,
-    currentTestimonials.length - testimonialVisible
-  );
+    return () => clearInterval(interval);
+  }, [testimonialPaused, testimonialVisible, currentTestimonials.length]);
 
-  setTestimonialIndex((current) =>
-    current <= 0 ? maxIndex : current - 1
-  );
-};
+  const goToPreviousTestimonial = () => {
+    const maxIndex = Math.max(
+      0,
+      currentTestimonials.length - testimonialVisible,
+    );
 
-const goToNextTestimonial = () => {
-  const maxIndex = Math.max(
-    0,
-    currentTestimonials.length - testimonialVisible
-  );
+    setTestimonialIndex((current) => (current <= 0 ? maxIndex : current - 1));
+  };
 
-  setTestimonialIndex((current) =>
-    current >= maxIndex ? 0 : current + 1
-  );
-};
+  const goToNextTestimonial = () => {
+    const maxIndex = Math.max(
+      0,
+      currentTestimonials.length - testimonialVisible,
+    );
+
+    setTestimonialIndex((current) => (current >= maxIndex ? 0 : current + 1));
+  };
   const currentFaqs = faqs[language];
 
   return (
@@ -632,20 +622,23 @@ const goToNextTestimonial = () => {
                 }`}
               />
 
+              {/* DARK OVERLAY */}
               <div className="absolute inset-0 bg-[#07111f]/55" />
 
+              {/* LEFT GRADIENT */}
               <div className="absolute inset-0 bg-linear-to-r from-[#07111f]/95 via-[#07111f]/65 to-[#07111f]/15" />
 
+              {/* BOTTOM GRADIENT */}
               <div className="absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-[#07111f]/80 to-transparent" />
             </div>
           ))}
         </div>
 
         {/* HERO CONTENT */}
-        <div className="relative z-20 mx-auto flex min-h-screen w-full max-w-7xl items-center px-16 pt-32 pb-16 sm:px-20 sm:pt-36 sm:pb-16 lg:px-24 lg:pt-32 lg:pb-16 xl:px-28">
+        <div className="relative z-20 mx-auto flex min-h-screen w-full max-w-7xl items-center px-6 pt-28 pb-20 sm:px-10 sm:pt-32 sm:pb-16 lg:px-24 lg:pt-32 lg:pb-16 xl:px-28">
           <div
             key={`${language}-${activeSlide}`}
-            className="ml-3 w-full max-w-xl animate-[heroContent_700ms_ease-out] sm:ml-4 sm:max-w-2xl lg:ml-6"
+            className="w-full max-w-xl animate-[heroContent_700ms_ease-out] sm:ml-2 sm:max-w-2xl lg:ml-6"
           >
             {/* EYEBROW */}
             <div className="mb-5 inline-flex items-center gap-2 sm:mb-7 sm:gap-3">
@@ -657,7 +650,7 @@ const goToNextTestimonial = () => {
             </div>
 
             {/* TITLE */}
-            <h1 className="max-w-xl text-[2.25rem] font-bold leading-[1.04] tracking-[-0.035em] text-white sm:text-5xl sm:leading-[1.02] lg:text-[4.25rem] xl:text-[4.75rem]">
+            <h1 className="max-w-[340px] text-[2rem] font-bold leading-[1.08] tracking-[-0.03em] text-white sm:max-w-xl sm:text-5xl sm:leading-[1.02] lg:text-[4.25rem] xl:text-[4.75rem]">
               {currentHeroSlides[activeSlide].title1}
 
               <span className="mt-1 block text-accent sm:mt-2">
@@ -666,15 +659,15 @@ const goToNextTestimonial = () => {
             </h1>
 
             {/* DESCRIPTION */}
-            <p className="mt-5 max-w-lg text-sm leading-6 text-white/75 sm:mt-7 sm:text-base sm:leading-7 lg:text-lg lg:leading-8">
+            <p className="mt-4 max-w-[330px] text-[13px] leading-5.5 text-white/75 sm:mt-7 sm:max-w-lg sm:text-base sm:leading-7 lg:text-lg lg:leading-8">
               {currentHeroSlides[activeSlide].description}
             </p>
 
             {/* BUTTONS */}
-            <div className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row">
+            <div className="mt-6 flex w-full max-w-[340px] flex-col gap-3 sm:mt-9 sm:max-w-none sm:flex-row">
               <Link
                 href="/services"
-                className="group inline-flex h-11 items-center justify-center rounded-lg bg-accent px-6 text-sm font-semibold text-accent-foreground shadow-[0_8px_30px_rgba(245,196,0,0.16)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(245,196,0,0.28)] sm:h-12 sm:px-7"
+                className="group inline-flex h-11 items-center justify-center rounded-lg bg-accent px-5 text-sm font-semibold text-accent-foreground shadow-[0_8px_30px_rgba(245,196,0,0.16)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(245,196,0,0.28)] sm:h-12 sm:px-7"
               >
                 {home.exploreServices}
 
@@ -685,14 +678,14 @@ const goToNextTestimonial = () => {
 
               <Link
                 href="/contact"
-                className="inline-flex h-11 items-center justify-center rounded-lg border border-white/30 bg-white/8 px-6 text-sm font-semibold text-white backdrop-blur-md transition-all duration-300 hover:border-white/50 hover:bg-white/[0.14] sm:h-12 sm:px-7"
+                className="inline-flex h-11 items-center justify-center rounded-lg border border-white/30 bg-white/8 px-5 text-sm font-semibold text-white backdrop-blur-md transition-all duration-300 hover:border-white/50 hover:bg-white/[0.14] sm:h-12 sm:px-7"
               >
                 {common.discussResearch}
               </Link>
             </div>
 
             {/* FEATURES */}
-            <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2.5 sm:mt-9 sm:gap-x-7 sm:gap-y-3">
+            <div className="mt-6 flex max-w-[340px] flex-wrap gap-x-4 gap-y-2 sm:mt-9 sm:max-w-none sm:gap-x-7 sm:gap-y-3">
               <span className="inline-flex items-center gap-2 text-[11px] text-white/70 sm:text-sm">
                 <span className="text-accent">✓</span>
                 {language === "en" ? "Research focused" : "अनुसन्धान केन्द्रित"}
@@ -711,26 +704,26 @@ const goToNextTestimonial = () => {
           </div>
         </div>
 
-        {/* PREVIOUS */}
+        {/* PREVIOUS — HIDDEN ON MOBILE */}
         <button
           type="button"
           onClick={goToPrevious}
           aria-label="Previous slide"
-          className="group absolute left-3 top-1/2 z-30 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-white/8 text-white backdrop-blur-md transition-all duration-300 hover:border-accent/60 hover:bg-accent hover:text-accent-foreground sm:left-5 sm:h-10 sm:w-10 lg:left-8 lg:h-11 lg:w-11"
+          className="group absolute left-5 top-1/2 z-30 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-white/8 text-white backdrop-blur-md transition-all duration-300 hover:border-accent/60 hover:bg-accent hover:text-accent-foreground sm:flex lg:left-8 lg:h-11 lg:w-11"
         >
-          <span className="text-lg transition-transform duration-300 group-hover:-translate-x-0.5 sm:text-xl">
+          <span className="text-xl transition-transform duration-300 group-hover:-translate-x-0.5">
             ‹
           </span>
         </button>
 
-        {/* NEXT */}
+        {/* NEXT — HIDDEN ON MOBILE */}
         <button
           type="button"
           onClick={goToNext}
           aria-label="Next slide"
-          className="group absolute right-3 top-1/2 z-30 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-white/8 text-white backdrop-blur-md transition-all duration-300 hover:border-accent/60 hover:bg-accent hover:text-accent-foreground sm:right-5 sm:h-10 sm:w-10 lg:right-8 lg:h-11 lg:w-11"
+          className="group absolute right-5 top-1/2 z-30 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-white/8 text-white backdrop-blur-md transition-all duration-300 hover:border-accent/60 hover:bg-accent hover:text-accent-foreground sm:flex lg:right-8 lg:h-11 lg:w-11"
         >
-          <span className="text-lg transition-transform duration-300 group-hover:translate-x-0.5 sm:text-xl">
+          <span className="text-xl transition-transform duration-300 group-hover:translate-x-0.5">
             ›
           </span>
         </button>
@@ -1153,147 +1146,139 @@ const goToNextTestimonial = () => {
 
       {/* TESTIMONIALS */}
       {/* TESTIMONIALS */}
-<section className="bg-background">
-  <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
+          {/* HEADER */}
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-3">
+                <span className="h-px w-8 bg-primary" />
 
-    {/* HEADER */}
-    <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-      <div className="max-w-2xl">
-        <div className="flex items-center gap-3">
-          <span className="h-px w-8 bg-primary" />
-
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-            {home.experiences}
-          </p>
-        </div>
-
-        <h2 className="mt-5 max-w-2xl text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-          {home.experiencesHeading}
-        </h2>
-      </div>
-
-      {/* Counter */}
-      <div className="hidden items-center gap-3 text-xs font-medium tracking-[0.15em] text-muted-foreground sm:flex">
-        <span>
-          {String(testimonialIndex + 1).padStart(2, "0")}
-        </span>
-
-        <span className="h-px w-8 bg-border" />
-
-        <span>
-          {String(currentTestimonials.length).padStart(2, "0")}
-        </span>
-      </div>
-    </div>
-
-    {/* CAROUSEL */}
-    <div
-      className="relative mt-12 overflow-hidden"
-      onMouseEnter={() => setTestimonialPaused(true)}
-      onMouseLeave={() => setTestimonialPaused(false)}
-    >
-      <div
-        className="flex transition-transform duration-700 ease-out"
-        style={{
-          transform: `translateX(-${
-            testimonialIndex * (100 / testimonialVisible)
-          }%)`,
-        }}
-      >
-        {currentTestimonials.map((testimonial, index) => (
-          <div
-            key={`${testimonial.name}-${index}`}
-            className="w-full shrink-0 basis-full px-2 md:basis-1/2 lg:basis-1/3"
-          >
-            <figure className="group flex h-full min-h-77.5 flex-col justify-between rounded-2xl border border-border bg-muted/40 p-7 transition-all duration-300 hover:border-primary/20 hover:bg-muted/60 sm:p-8">
-
-              {/* Quote */}
-              <div>
-                <div className="text-5xl font-serif leading-none text-accent/80">
-                  “
-                </div>
-
-                <blockquote className="mt-5 text-base leading-7 text-foreground sm:text-[17px]">
-                  {testimonial.quote}
-                </blockquote>
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+                  {home.experiences}
+                </p>
               </div>
 
-              {/* Author */}
-              <figcaption className="mt-10 border-t border-border pt-5">
-                <div className="flex items-end justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-semibold text-foreground">
-                      {testimonial.name}
-                    </p>
+              <h2 className="mt-5 max-w-2xl text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+                {home.experiencesHeading}
+              </h2>
+            </div>
 
-                    <p className="mt-1 text-xs text-muted-foreground">
-                      {testimonial.role}
-                    </p>
-                  </div>
+            {/* Counter */}
+            <div className="hidden items-center gap-3 text-xs font-medium tracking-[0.15em] text-muted-foreground sm:flex">
+              <span>{String(testimonialIndex + 1).padStart(2, "0")}</span>
 
-                  <span className="text-xs font-bold tracking-[0.15em] text-primary">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </div>
-              </figcaption>
-            </figure>
+              <span className="h-px w-8 bg-border" />
+
+              <span>{String(currentTestimonials.length).padStart(2, "0")}</span>
+            </div>
           </div>
-        ))}
-      </div>
-    </div>
 
-    {/* CONTROLS */}
-    <div className="mt-8 flex items-center justify-between">
+          {/* CAROUSEL */}
+          <div
+            className="relative mt-12 overflow-hidden"
+            onMouseEnter={() => setTestimonialPaused(true)}
+            onMouseLeave={() => setTestimonialPaused(false)}
+          >
+            <div
+              className="flex transition-transform duration-700 ease-out"
+              style={{
+                transform: `translateX(-${
+                  testimonialIndex * (100 / testimonialVisible)
+                }%)`,
+              }}
+            >
+              {currentTestimonials.map((testimonial, index) => (
+                <div
+                  key={`${testimonial.name}-${index}`}
+                  className="w-full shrink-0 basis-full px-2 md:basis-1/2 lg:basis-1/3"
+                >
+                  <figure className="group flex h-full min-h-[310px] flex-col justify-between rounded-2xl border border-border bg-muted/40 p-7 transition-all duration-300 hover:border-primary/20 hover:bg-muted/60 sm:p-8">
+                    {/* Quote */}
+                    <div>
+                      <div className="text-5xl font-serif leading-none text-accent/80">
+                        “
+                      </div>
 
-      {/* Progress */}
-      <div className="flex items-center gap-2">
-        {currentTestimonials.map((_, index) => (
-          <button
-            key={index}
-            type="button"
-            aria-label={`Go to testimonial ${index + 1}`}
-            onClick={() => {
-              const maxIndex = Math.max(
-                0,
-                currentTestimonials.length - testimonialVisible
-              );
+                      <blockquote className="mt-5 text-base leading-7 text-foreground sm:text-[17px]">
+                        {testimonial.quote}
+                      </blockquote>
+                    </div>
 
-              setTestimonialIndex(Math.min(index, maxIndex));
-            }}
-            className={`h-1 rounded-full transition-all duration-500 ${
-              index >= testimonialIndex &&
-              index < testimonialIndex + testimonialVisible
-                ? "w-8 bg-primary"
-                : "w-2 bg-border hover:bg-muted-foreground"
-            }`}
-          />
-        ))}
-      </div>
+                    {/* Author */}
+                    <figcaption className="mt-10 border-t border-border pt-5">
+                      <div className="flex items-end justify-between gap-4">
+                        <div>
+                          <p className="text-sm font-semibold text-foreground">
+                            {testimonial.name}
+                          </p>
 
-      {/* Previous / Next */}
-      <div className="flex items-center gap-2">
-        <button
-          type="button"
-          onClick={goToPreviousTestimonial}
-          aria-label="Previous testimonials"
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-foreground transition-all duration-300 hover:border-primary hover:bg-primary hover:text-primary-foreground"
-        >
-          ←
-        </button>
+                          <p className="mt-1 text-xs text-muted-foreground">
+                            {testimonial.role}
+                          </p>
+                        </div>
 
-        <button
-          type="button"
-          onClick={goToNextTestimonial}
-          aria-label="Next testimonials"
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-foreground transition-all duration-300 hover:border-primary hover:bg-primary hover:text-primary-foreground"
-        >
-          →
-        </button>
-      </div>
-    </div>
+                        <span className="text-xs font-bold tracking-[0.15em] text-primary">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </div>
+              ))}
+            </div>
+          </div>
 
-  </div>
-</section>
+          {/* CONTROLS */}
+          <div className="mt-8 flex items-center justify-between">
+            {/* Progress */}
+            <div className="flex items-center gap-2">
+              {currentTestimonials.map((_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  aria-label={`Go to testimonial ${index + 1}`}
+                  onClick={() => {
+                    const maxIndex = Math.max(
+                      0,
+                      currentTestimonials.length - testimonialVisible,
+                    );
+
+                    setTestimonialIndex(Math.min(index, maxIndex));
+                  }}
+                  className={`h-1 rounded-full transition-all duration-500 ${
+                    index >= testimonialIndex &&
+                    index < testimonialIndex + testimonialVisible
+                      ? "w-8 bg-primary"
+                      : "w-2 bg-border hover:bg-muted-foreground"
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Previous / Next */}
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={goToPreviousTestimonial}
+                aria-label="Previous testimonials"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-foreground transition-all duration-300 hover:border-primary hover:bg-primary hover:text-primary-foreground"
+              >
+                ←
+              </button>
+
+              <button
+                type="button"
+                onClick={goToNextTestimonial}
+                aria-label="Next testimonials"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-foreground transition-all duration-300 hover:border-primary hover:bg-primary hover:text-primary-foreground"
+              >
+                →
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* FAQ */}
       <section className="bg-muted/40">

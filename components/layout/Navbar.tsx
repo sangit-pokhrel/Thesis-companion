@@ -22,46 +22,55 @@ const universities = [
   {
     shortName: "TU",
     name: "Tribhuvan University",
+    nameNe: "त्रिभुवन विश्वविद्यालय",
     href: "/guidelines/tribhuvan-university",
   },
   {
     shortName: "PU",
     name: "Pokhara University",
+    nameNe: "पोखरा विश्वविद्यालय",
     href: "/guidelines/pokhara-university",
   },
   {
     shortName: "KU",
     name: "Kathmandu University",
+    nameNe: "काठमाडौं विश्वविद्यालय",
     href: "/guidelines/kathmandu-university",
   },
   {
     shortName: "PU",
     name: "Purbanchal University",
+    nameNe: "पूर्वाञ्चल विश्वविद्यालय",
     href: "/guidelines/purbanchal-university",
   },
   {
     shortName: "MWU",
     name: "Mid-Western University",
+    nameNe: "मध्यपश्चिम विश्वविद्यालय",
     href: "/guidelines/mid-western-university",
   },
   {
     shortName: "FWU",
     name: "Far-Western University",
+    nameNe: "सुदूरपश्चिम विश्वविद्यालय",
     href: "/guidelines/far-western-university",
   },
   {
     shortName: "AFU",
     name: "Agriculture and Forestry University",
+    nameNe: "कृषि तथा वन विज्ञान विश्वविद्यालय",
     href: "/guidelines/agriculture-and-forestry-university",
   },
   {
     shortName: "NSU",
     name: "Nepal Sanskrit University",
+    nameNe: "नेपाल संस्कृत विश्वविद्यालय",
     href: "/guidelines/nepal-sanskrit-university",
   },
   {
     shortName: "BPKIHS",
     name: "B.P. Koirala Institute of Health Sciences",
+    nameNe: "बी.पी. कोइराला स्वास्थ्य विज्ञान प्रतिष्ठान",
     href: "/guidelines/bpkihs",
   },
 ] as const;
@@ -71,9 +80,26 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [guidelinesOpen, setGuidelinesOpen] = useState(false);
 
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
 
   const nav = t("nav");
+
+  const guidelinesText =
+    language === "en"
+      ? {
+          label: "Guidelines",
+          title: "Research Guidelines",
+          description: "University-specific research and thesis resources",
+          viewAll: "View All Guidelines",
+          all: "All Guidelines",
+        }
+      : {
+          label: "निर्देशनहरू",
+          title: "अनुसन्धान निर्देशनहरू",
+          description: "विश्वविद्यालयअनुसार अनुसन्धान तथा थेसिस स्रोतहरू",
+          viewAll: "सबै निर्देशनहरू हेर्नुहोस्",
+          all: "सबै निर्देशनहरू",
+        };
 
   const isActive = (href: string) => {
     if (href === "/") {
@@ -259,7 +285,7 @@ export default function Navbar() {
                     ${guidelinesActive ? "text-[#0b1f3a] dark:text-[#f5c400]" : ""}
                   `}
                 >
-                  Guidelines
+                  {guidelinesText.label}
                 </span>
 
                 <svg
@@ -317,11 +343,11 @@ export default function Navbar() {
                       <div className="flex items-center justify-between">
                         <div>
                           <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-accent">
-                            Research Guidelines
+                            {guidelinesText.title}
                           </p>
 
                           <p className="mt-1.5 text-xs leading-5 text-muted-foreground">
-                            University-specific research and thesis resources
+                            {guidelinesText.description}
                           </p>
                         </div>
 
@@ -382,7 +408,7 @@ export default function Navbar() {
 
                             {/* University name */}
                             <span className="flex-1 text-[13px] font-medium">
-                              {university.name}
+                              {language === "en" ? university.name : university.nameNe}
                             </span>
 
                             {/* Arrow */}
@@ -424,7 +450,7 @@ export default function Navbar() {
                           dark:shadow-none
                         "
                       >
-                        View All Guidelines
+                        {guidelinesText.viewAll}
                         <span className="ml-2 transition-transform duration-200 group-hover:translate-x-1">
                           →
                         </span>
@@ -617,7 +643,7 @@ export default function Navbar() {
                     }
                   `}
                 >
-                  <span>Guidelines</span>
+                  <span>{guidelinesText.label}</span>
 
                   <svg
                     className={`
@@ -654,7 +680,7 @@ export default function Navbar() {
                         }
                       `}
                     >
-                      <span>All Guidelines</span>
+                      <span>{guidelinesText.all}</span>
                       <span>→</span>
                     </Link>
 
@@ -692,7 +718,7 @@ export default function Navbar() {
                               {university.shortName}
                             </span>
 
-                            <span>{university.name}</span>
+                            <span>{language === "en" ? university.name : university.nameNe}</span>
                           </Link>
                         );
                       })}

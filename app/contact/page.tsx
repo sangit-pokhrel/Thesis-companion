@@ -54,9 +54,29 @@ export default function ContactPage() {
   const currentLevels = academicLevels[language];
   const currentServices = services[language];
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSubmitted(true);
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(Object.fromEntries(formData.entries())),
+      });
+
+      if (!response.ok) {
+        return;
+      }
+
+      setSubmitted(true);
+    } catch {
+      // Keep the existing page state unchanged if the request fails.
+    }
   };
 
   if (submitted) {
