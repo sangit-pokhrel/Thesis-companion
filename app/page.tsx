@@ -787,7 +787,7 @@ export default function HomePage() {
           {/* Section Header */}
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                 {home.whatWeSupport}
               </p>
 
@@ -805,7 +805,7 @@ export default function HomePage() {
             {/* View All Services */}
             <Link
               href="/services"
-              className="group inline-flex shrink-0 items-center text-sm font-semibold text-foreground transition-colors duration-200 hover:text-accent"
+              className="group inline-flex shrink-0 items-center text-sm font-semibold text-foreground transition-colors duration-200 hover:text-foreground"
             >
               {home.viewAllServices}
 
@@ -818,57 +818,53 @@ export default function HomePage() {
           {/* Services Grid */}
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {currentServices.map((service) => (
-              <article
+              <Link
                 key={service.number}
-                className="group overflow-hidden rounded-2xl border border-border bg-background shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl"
+                href={service.href}
+                className="group block h-full"
               >
-                {/* Image */}
-                <div className="relative aspect-16/10 overflow-hidden bg-muted">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
+                <article className="h-full overflow-hidden rounded-2xl border border-border bg-background shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl">
+                  {/* Image */}
+                  <div className="relative aspect-16/10 overflow-hidden bg-muted">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
 
-                  {/* Image Overlay */}
-                  <div className="absolute inset-0 bg-linear-to-t from-primary/70 via-primary/10 to-transparent" />
+                    {/* Image Overlay */}
+                    <div className="absolute inset-0 bg-linear-to-t from-primary/70 via-primary/10 to-transparent" />
 
-                  {/* Service Number */}
-                  <span className="absolute left-5 top-5 flex h-9 min-w-9 items-center justify-center rounded-full border border-white/30 bg-primary/80 px-3 text-xs font-bold text-white shadow-lg backdrop-blur-md">
-                    {service.number}
-                  </span>
-
-                  {/* Yellow Hover Line */}
-                  <div className="absolute bottom-0 left-0 h-1 w-0 bg-accent transition-all duration-500 group-hover:w-full" />
-                </div>
-
-                {/* Card Content */}
-                <div className="p-7">
-                  {/* Title */}
-                  <h3 className="text-xl font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-accent">
-                    {service.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                    {service.description}
-                  </p>
-
-                  {/* Learn More */}
-                  <Link
-                    href={service.href}
-                    className="group/link mt-6 inline-flex items-center text-sm font-semibold text-foreground transition-colors duration-200 hover:text-accent"
-                  >
-                    {common.learnMore}
-
-                    <span className="ml-2 transition-transform duration-300 group-hover/link:translate-x-1">
-                      →
+                    {/* Service Number */}
+                    <span className="absolute left-5 top-5 flex h-9 min-w-9 items-center justify-center rounded-full border border-white/30 bg-primary/80 px-3 text-xs font-bold text-white shadow-lg backdrop-blur-md">
+                      {service.number}
                     </span>
-                  </Link>
-                </div>
-              </article>
+
+                    {/* Yellow Hover Line */}
+                    <div className="absolute bottom-0 left-0 h-1 w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="p-7">
+                    {/* Title */}
+                    <h3 className="text-xl font-bold tracking-tight text-foreground transition-transform duration-300 group-hover:translate-x-0.5">
+                      {service.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                      {service.description}
+                    </p>
+
+                    {/* Learn More Button */}
+                    <span className="mt-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background px-5 py-2.5 text-sm font-semibold text-muted-foreground shadow-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-primary/40 group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-md">
+                      {common.learnMore}
+                    </span>
+                  </div>
+                </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -893,7 +889,7 @@ export default function HomePage() {
                 />
               </div>
 
-              <div className="absolute -bottom-6 -right-4 max-w-55 rounded-xl border border-border bg-background p-5 shadow-xl sm:right-6">
+              {/* <div className="absolute -bottom-6 -right-4 max-w-55 rounded-xl border border-border bg-background p-5 shadow-xl sm:right-6">
                 <p className="text-2xl font-bold text-primary">01</p>
 
                 <p className="mt-1 text-sm font-medium text-foreground">
@@ -901,11 +897,11 @@ export default function HomePage() {
                     ? "Clear research direction"
                     : "स्पष्ट अनुसन्धान दिशा"}
                 </p>
-              </div>
+              </div> */}
             </div>
 
             <div className="max-w-xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                 {language === "en"
                   ? "About Thesis Companion"
                   : "Thesis Companion को बारेमा"}
@@ -931,12 +927,15 @@ export default function HomePage() {
 
               <Link
                 href="/about"
-                className="mt-8 inline-flex items-center text-sm font-semibold text-primary"
+                className="group mt-8 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background px-5 py-2.5 text-sm font-semibold text-muted-foreground shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-primary hover:text-primary-foreground hover:shadow-md"
               >
                 {language === "en"
                   ? "Learn about us"
                   : "हाम्रो बारेमा जान्नुहोस्"}
-                <span className="ml-2">→</span>
+
+                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
               </Link>
             </div>
           </div>
@@ -986,152 +985,162 @@ export default function HomePage() {
       </section>
 
       {/* WHY US */}
-     {/* WHY US */}
-<section className="bg-background">
-  <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-32">
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-32">
+          {/* TOP INTRO */}
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                {home.whyUs}
+              </p>
 
-    {/* TOP INTRO */}
-    <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+              <div className="mt-5 h-px w-16 bg-accent" />
+            </div>
 
-      <div className="lg:col-span-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
-          {home.whyUs}
-        </p>
-
-        <div className="mt-5 h-px w-16 bg-accent" />
-      </div>
-
-      <div className="lg:col-span-8">
-        <h2 className="max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.04em] text-foreground sm:text-5xl lg:text-6xl">
-          {home.whyHeading}
-        </h2>
-      </div>
-    </div>
-
-    {/* MAIN VISUAL AREA */}
-    <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:gap-16">
-
-      {/* IMAGE */}
-      <div className="relative lg:col-span-7">
-
-        <div className="relative overflow-hidden rounded-[2rem]">
-          <div className="relative aspect-[16/11]">
-            <Image
-              src={images.home.whyUs}
-              alt={
-                language === "en"
-                  ? "Student working on academic research"
-                  : "शैक्षिक अनुसन्धानमा काम गर्दै विद्यार्थी"
-              }
-              fill
-              sizes="(max-width: 1024px) 100vw, 58vw"
-              className="object-cover transition-transform duration-700 hover:scale-[1.02]"
-            />
+            <div className="lg:col-span-8">
+              <h2 className="max-w-4xl text-4xl font-semibold leading-[1.05] tracking-[-0.04em] text-foreground sm:text-5xl lg:text-6xl">
+                {home.whyHeading}
+              </h2>
+            </div>
           </div>
-        </div>
 
-        {/* Small cropped detail */}
-        <div className="absolute -bottom-8 -right-5 hidden w-40 overflow-hidden rounded-2xl border-8 border-background shadow-xl sm:block">
-          <div className="relative aspect-square">
-            <Image
-              src={images.home.whyUs}
-              alt=""
-              fill
-              sizes="160px"
-              className="scale-[1.6] object-cover"
-            />
-          </div>
-        </div>
-
-      </div>
-
-      {/* BENEFITS */}
-      <div className="flex flex-col justify-between lg:col-span-5">
-
-        <div>
-          {currentBenefits.map((benefit, index) => (
-            <div
-              key={benefit}
-              className="group border-t border-border py-6 last:border-b"
-            >
-              <div className="flex items-start gap-5">
-
-                <span className="pt-1 text-xs font-medium text-muted-foreground">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-
-                <div className="flex-1">
-                  <p className="text-lg font-medium leading-7 text-foreground transition-colors duration-300 group-hover:text-primary">
-                    {benefit}
-                  </p>
+          {/* MAIN VISUAL AREA */}
+          <div className="mt-16 grid gap-12 lg:grid-cols-12 lg:gap-16">
+            {/* IMAGE STACK */}
+            <div className="relative flex min-h-[420px] items-center justify-center lg:col-span-7">
+              <div className="group relative h-[360px] w-[85%] max-w-[560px] sm:h-[400px]">
+                {/* Back Image 3 */}
+                <div className="absolute left-8 top-4 h-full w-full rotate-[-6deg] overflow-hidden rounded-[2rem] border border-border bg-muted shadow-lg transition-all duration-700 ease-out group-hover:-translate-x-8 group-hover:-rotate-[10deg] group-hover:scale-[0.96]">
+                  <Image
+                    src={images.home.whyUs1}
+                    alt=""
+                    fill
+                    sizes="(max-width: 1024px) 80vw, 45vw"
+                    className="object-cover opacity-50 blur-[2px] transition-all duration-700 group-hover:opacity-80 group-hover:blur-0"
+                  />
                 </div>
 
-                <span className="pt-1 text-muted-foreground transition-transform duration-300 group-hover:translate-x-1">
-                  ↗
-                </span>
+                {/* Back Image 2 */}
+                <div className="absolute left-4 top-2 h-full w-full rotate-[4deg] overflow-hidden rounded-[2rem] border border-border bg-muted shadow-xl transition-all duration-700 ease-out group-hover:translate-x-6 group-hover:rotate-[8deg] group-hover:scale-[0.98]">
+                  <Image
+                    src={images.home.whyUs2}
+                    alt=""
+                    fill
+                    sizes="(max-width: 1024px) 80vw, 45vw"
+                    className="object-cover opacity-60 blur-[1.5px] transition-all duration-700 group-hover:opacity-90 group-hover:blur-0"
+                  />
+                </div>
 
+                {/* Main Image */}
+                <div className="absolute inset-0 overflow-hidden rounded-[2rem] border border-border bg-muted shadow-2xl transition-all duration-700 ease-out group-hover:-translate-y-2">
+                  <Image
+                    src={images.home.whyUs}
+                    alt={
+                      language === "en"
+                        ? "Student working on academic research"
+                        : "शैक्षिक अनुसन्धानमा काम गर्दै विद्यार्थी"
+                    }
+                    fill
+                    sizes="(max-width: 1024px) 85vw, 50vw"
+                    className="object-cover opacity-75 blur-[1px] transition-all duration-700 ease-out group-hover:scale-[1.03] group-hover:opacity-100 group-hover:blur-0"
+                  />
+                </div>
               </div>
             </div>
-          ))}
+
+            {/* BENEFITS / TIMELINE */}
+            <div className="flex flex-col justify-between lg:col-span-5">
+              <div className="relative">
+                {/* Timeline Line */}
+                <div className="absolute bottom-5 left-[19px] top-5 w-px bg-border" />
+
+                {currentBenefits.map((benefit, index) => (
+                  <div
+                    key={benefit}
+                    className="group relative flex gap-6 pb-8 last:pb-0"
+                  >
+                    {/* Timeline Number */}
+                    <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-background text-xs font-semibold text-muted-foreground shadow-sm transition-all duration-300 group-hover:border-primary/40 group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-md">
+                      {String(index + 1).padStart(2, "0")}
+                    </div>
+
+                    {/* Timeline Content */}
+                    <div className="flex-1 pb-2 pt-1">
+                      <p className="text-lg font-medium leading-7 text-foreground transition-transform duration-300 group-hover:translate-x-1">
+                        {benefit}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Supporting Copy */}
+              <div className="mt-10 max-w-sm">
+                <p className="text-sm leading-6 text-muted-foreground">
+                  {language === "en"
+                    ? "From the first research idea to the final outcome, every stage is approached with clarity and purpose."
+                    : "पहिलो अनुसन्धान विचारदेखि अन्तिम नतिजासम्म हरेक चरणलाई स्पष्टता र उद्देश्यका साथ अघि बढाइन्छ।"}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* BOTTOM STATEMENT */}
+          <div className="mt-16 flex flex-col gap-4 border-t border-border pt-5 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              {language === "en"
+                ? "A better way to approach research"
+                : "अनुसन्धानलाई अघि बढाउने अझ राम्रो तरिका"}
+            </p>
+
+            <div className="flex items-center gap-3">
+              <span className="h-px w-10 bg-accent" />
+
+              <span className="text-xs text-muted-foreground">
+                Thesis Companion
+              </span>
+            </div>
+          </div>
         </div>
-
-        {/* Supporting copy */}
-        <div className="mt-10 max-w-sm">
-          <p className="text-sm leading-6 text-muted-foreground">
-            {language === "en"
-              ? "From the first research idea to the final outcome, every stage is approached with clarity and purpose."
-              : "पहिलो अनुसन्धान विचारदेखि अन्तिम नतिजासम्म हरेक चरणलाई स्पष्टता र उद्देश्यका साथ अघि बढाइन्छ।"}
-          </p>
-        </div>
-
-      </div>
-    </div>
-
-    {/* BOTTOM STATEMENT */}
-    <div className="mt-16 flex flex-col gap-4 border-t border-border pt-5 sm:flex-row sm:items-center sm:justify-between">
-
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-        {language === "en"
-          ? "A better way to approach research"
-          : "अनुसन्धानलाई अघि बढाउने अझ राम्रो तरिका"}
-      </p>
-
-      <div className="flex items-center gap-3">
-        <span className="h-px w-10 bg-accent" />
-
-        <span className="text-xs text-muted-foreground">
-          Thesis Companion
-        </span>
-      </div>
-
-    </div>
-
-  </div>
-</section>
+      </section>
 
       {/* RESEARCH AREAS */}
       <section className="bg-muted/40">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-24">
-          <div className="grid items-center gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
+          <div className="grid items-center gap-14 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
             {/* LEFT */}
             <div>
-              {/* Section label */}
               <div className="flex items-center gap-3">
                 <span className="h-px w-8 bg-primary" />
 
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
                   {home.researchAreas}
                 </p>
               </div>
 
-              {/* Heading */}
               <h2 className="mt-5 max-w-md text-4xl font-bold leading-[1.08] tracking-tight text-foreground sm:text-[2.8rem]">
                 {home.researchAreasHeading}
               </h2>
 
-              {/* Image */}
-              <div className="group relative mt-9 overflow-hidden rounded-[1.4rem]">
-                <div className="relative aspect-16/10">
+              <p className="mt-6 max-w-md text-sm leading-7 text-muted-foreground">
+                {language === "en"
+                  ? "Explore the academic disciplines we support through structured research guidance, analysis, and academic development."
+                  : "संरचित अनुसन्धान मार्गदर्शन, विश्लेषण र शैक्षिक विकासमार्फत हामीले सहयोग गर्ने विभिन्न शैक्षिक क्षेत्रहरू।"}
+              </p>
+            </div>
+
+            {/* RIGHT */}
+            <div className="relative mx-auto w-full max-w-3xl">
+              {/* ================= DESKTOP ================= */}
+              <div className="relative hidden min-h-[560px] items-center justify-center md:flex">
+                {/* Outer Orbit */}
+                <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-border/70 lg:h-[540px] lg:w-[540px]" />
+
+                {/* Inner Orbit */}
+                <div className="absolute left-1/2 top-1/2 h-[430px] w-[430px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-border/50 lg:h-[470px] lg:w-[470px]" />
+
+                {/* Central Image */}
+                <div className="group relative z-20 h-[320px] w-[320px] overflow-hidden rounded-full border-[8px] border-background bg-muted shadow-2xl lg:h-[350px] lg:w-[350px]">
                   <Image
                     src={images.home.research}
                     alt={
@@ -1140,74 +1149,199 @@ export default function HomePage() {
                         : "अनुसन्धान क्षेत्रहरू"
                     }
                     fill
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="350px"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
 
-                  <div className="absolute inset-0 bg-linear-to-t from-black/65 via-black/10 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/65 via-primary/5 to-transparent" />
 
-                  <div className="absolute bottom-5 left-5">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70">
+                  <div className="absolute inset-x-0 bottom-0 p-8 text-center">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/70">
                       Research Support
                     </p>
 
-                    <p className="mt-1 text-base font-semibold text-white">
-                      Across multiple disciplines
+                    <p className="mt-2 text-lg font-semibold text-white">
+                      Across disciplines
                     </p>
                   </div>
                 </div>
+
+                {/* TOP */}
+                {currentAreas[0] && (
+                  <div className="absolute left-1/2 top-0 -translate-x-1/2">
+                    <div className="group whitespace-nowrap text-center">
+                      <div className="rounded-full border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-primary/30 group-hover:shadow-md">
+                        {currentAreas[0]}
+                      </div>
+
+                      <div className="mx-auto mt-2 h-5 w-px bg-border" />
+                    </div>
+                  </div>
+                )}
+
+                {/* UPPER RIGHT */}
+                {currentAreas[1] && (
+                  <div className="absolute right-0 top-[17%]">
+                    <div className="group flex items-center gap-3">
+                      <span className="h-px w-8 bg-border transition-all duration-300 group-hover:w-12 group-hover:bg-accent" />
+
+                      <div className="whitespace-nowrap rounded-full border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-primary/30 group-hover:shadow-md">
+                        {currentAreas[1]}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* LOWER RIGHT */}
+                {currentAreas[2] && (
+                  <div className="absolute bottom-[17%] right-0">
+                    <div className="group flex items-center gap-3">
+                      <span className="h-px w-8 bg-border transition-all duration-300 group-hover:w-12 group-hover:bg-accent" />
+
+                      <div className="whitespace-nowrap rounded-full border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-primary/30 group-hover:shadow-md">
+                        {currentAreas[2]}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* BOTTOM */}
+                {currentAreas[3] && (
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
+                    <div className="group whitespace-nowrap text-center">
+                      <div className="mx-auto mb-2 h-5 w-px bg-border" />
+
+                      <div className="rounded-full border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground shadow-sm transition-all duration-300 group-hover:translate-y-1 group-hover:border-primary/30 group-hover:shadow-md">
+                        {currentAreas[3]}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* LOWER LEFT */}
+                {currentAreas[4] && (
+                  <div className="absolute bottom-[17%] left-0">
+                    <div className="group flex items-center gap-3">
+                      <div className="whitespace-nowrap rounded-full border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-primary/30 group-hover:shadow-md">
+                        {currentAreas[4]}
+                      </div>
+
+                      <span className="h-px w-8 bg-border transition-all duration-300 group-hover:w-12 group-hover:bg-accent" />
+                    </div>
+                  </div>
+                )}
+
+                {/* UPPER LEFT */}
+                {currentAreas[5] && (
+                  <div className="absolute left-0 top-[17%]">
+                    <div className="group flex items-center gap-3">
+                      <div className="whitespace-nowrap rounded-full border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-primary/30 group-hover:shadow-md">
+                        {currentAreas[5]}
+                      </div>
+
+                      <span className="h-px w-8 bg-border transition-all duration-300 group-hover:w-12 group-hover:bg-accent" />
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
 
-            {/* RIGHT — EDITORIAL TIMELINE */}
-            <div className="relative">
-              {/* Small heading */}
-              <div className="mb-6 flex items-center justify-between">
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
-                  Research disciplines
-                </p>
+              {/* ================= MOBILE ================= */}
+              <div className="md:hidden">
+                {/* Large Central Moon */}
+                <div className="relative mx-auto flex h-[330px] w-full items-center justify-center">
+                  {/* Decorative curved rings */}
+                  <div className="absolute h-[300px] w-[300px] rounded-full border border-border/60" />
 
-                <span className="text-xs font-medium text-muted-foreground">
-                  01 — 06
-                </span>
-              </div>
+                  <div className="absolute h-[265px] w-[265px] rounded-full border border-border/40" />
 
-              {/* Timeline */}
-              <div className="relative">
-                {/* Main vertical line */}
-                <div className="absolute bottom-0 left-4.75 top-0 w-px bg-border" />
+                  {/* Image */}
+                  <div className="group relative z-10 h-[220px] w-[220px] overflow-hidden rounded-full border-[7px] border-background bg-muted shadow-xl">
+                    <Image
+                      src={images.home.research}
+                      alt={
+                        language === "en"
+                          ? "Research areas"
+                          : "अनुसन्धान क्षेत्रहरू"
+                      }
+                      fill
+                      sizes="220px"
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
 
-                <div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-primary/10 to-transparent" />
+
+                    <div className="absolute inset-x-0 bottom-0 p-5 text-center">
+                      <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-white/70">
+                        Research Support
+                      </p>
+
+                      <p className="mt-1 text-sm font-semibold text-white">
+                        Across disciplines
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Mobile Research Areas */}
+                <div className="mt-6 space-y-2.5">
                   {currentAreas.map((area, index) => (
                     <div
                       key={area}
-                      className="group relative flex items-center border-b border-border py-5 first:border-t"
+                      className={`
+                  flex items-center
+                  ${index % 2 === 0 ? "justify-start pl-2" : "justify-end pr-2"}
+                `}
                     >
-                      {/* Number */}
-                      <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border bg-background">
-                        <span className="text-[10px] font-bold tracking-wide text-primary">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                      </div>
+                      <div
+                        className={`
+                    relative
+                    rounded-full
+                    border border-border
+                    bg-background
+                    px-5 py-3
+                    text-sm
+                    font-semibold
+                    text-foreground
+                    shadow-sm
+                    transition-all
+                    duration-300
+                    hover:-translate-y-0.5
+                    hover:border-primary/30
+                    hover:shadow-md
+                    ${
+                      index % 2 === 0
+                        ? "w-[88%] text-left"
+                        : "w-[88%] text-right"
+                    }
+                  `}
+                      >
+                        {/* Small curved accent */}
+                        <span
+                          className={`
+                      absolute top-1/2 h-px w-5 -translate-y-1/2 bg-border
+                      ${index % 2 === 0 ? "-right-5" : "-left-5"}
+                    `}
+                        />
 
-                      {/* Content */}
-                      <div className="ml-7 flex flex-1 items-center justify-between">
-                        <h3 className="text-lg font-semibold tracking-tight text-foreground transition-transform duration-300 group-hover:translate-x-1 sm:text-xl">
-                          {area}
-                        </h3>
-
-                        {/* Small accent */}
-                        <span className="ml-6 h-px w-0 bg-primary transition-all duration-300 group-hover:w-8" />
+                        {area}
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
+
+              {/* Description */}
+              <div className="mx-auto mt-8 max-w-xl text-center">
+                <p className="text-sm leading-6 text-muted-foreground">
+                  {language === "en"
+                    ? "Different disciplines require different perspectives. Our support adapts to the subject, methodology, and goals of each study."
+                    : "विभिन्न अनुसन्धान क्षेत्रहरूलाई फरक दृष्टिकोण आवश्यक हुन्छ। हाम्रो सहयोग प्रत्येक अध्ययनको विषय, विधि र उद्देश्यअनुसार अनुकूल हुन्छ।"}
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
-
       {/* TESTIMONIALS */}
       {/* TESTIMONIALS */}
       <section className="bg-background">

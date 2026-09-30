@@ -30,6 +30,8 @@ export const images = {
     },
 
     about: "/images/home/about.jpg",
+    whyUs1: "/images/home/why-us1.jpg",
+    whyUs2: "/images/home/why-us2.jpg",
     whyUs: "/images/home/why-us.jpg",
     research: "/images/home/research.jpg",
     testimonials: "/images/home/testimonials.jpg",
