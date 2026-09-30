@@ -38,7 +38,6 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
       return "light";
     }
 
-    // New users start in light mode
     return "light";
   });
 

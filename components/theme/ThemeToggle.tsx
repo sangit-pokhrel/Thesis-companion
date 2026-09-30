@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import dynamic from "next/dynamic";
+import { Moon, Sun } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 
-export default function ThemeToggle() {
+function ThemeToggleContent() {
   const { theme, toggleTheme } = useTheme();
-  const [mounted] = useState(true);
 
   return (
     <button
@@ -16,15 +16,17 @@ export default function ThemeToggle() {
       } mode`}
       className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background text-foreground transition-colors hover:bg-muted"
     >
-      {mounted ? (
-        theme === "light" ? (
-          <span aria-hidden="true">☾</span>
-        ) : (
-          <span aria-hidden="true">☀</span>
-        )
+      {theme === "light" ? (
+        <Moon size={18} strokeWidth={1.8} aria-hidden="true" />
       ) : (
-        <span aria-hidden="true">◐</span>
+        <Sun size={18} strokeWidth={1.8} aria-hidden="true" />
       )}
     </button>
   );
 }
+
+const ThemeToggle = dynamic(() => Promise.resolve(ThemeToggleContent), {
+  ssr: false,
+});
+
+export default ThemeToggle;

@@ -91,6 +91,7 @@ export default function HomePage() {
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [testimonialVisible, setTestimonialVisible] = useState(3);
   const [testimonialPaused, setTestimonialPaused] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const currentHeroSlides = heroSlides[language];
 
@@ -1343,7 +1344,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      
+
       {/* TESTIMONIALS */}
 
       <section className="bg-background">
@@ -1463,8 +1464,6 @@ export default function HomePage() {
                               {testimonial.role}
                             </p>
                           </div>
-
-                        
                         </div>
                       </figcaption>
                     </figure>
@@ -1529,7 +1528,7 @@ export default function HomePage() {
       <section className="bg-muted/40">
         <div className="mx-auto max-w-4xl px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
           <div className="text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
               {home.faq}
             </p>
 
@@ -1539,21 +1538,48 @@ export default function HomePage() {
           </div>
 
           <div className="mt-12 divide-y divide-border rounded-2xl border border-border bg-background">
-            {currentFaqs.map((faq) => (
-              <details key={faq.question} className="group p-6 sm:p-7">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-base font-semibold text-foreground">
-                  <span>{faq.question}</span>
+            {currentFaqs.map((faq, index) => {
+              const isOpen = openFaq === index;
 
-                  <span className="shrink-0 text-xl text-muted-foreground transition-transform group-open:rotate-45">
-                    +
-                  </span>
-                </summary>
+              return (
+                <div key={faq.question} className="p-6 sm:p-7">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setOpenFaq((current) =>
+                        current === index ? null : index,
+                      )
+                    }
+                    aria-expanded={isOpen}
+                    className="flex w-full items-center justify-between gap-6 text-left text-base font-semibold text-foreground"
+                  >
+                    <span>{faq.question}</span>
 
-                <p className="mt-4 max-w-3xl pr-8 text-sm leading-7 text-muted-foreground">
-                  {faq.answer}
-                </p>
-              </details>
-            ))}
+                    <span
+                      className={`shrink-0 text-xl font-normal text-muted-foreground transition-transform duration-300 ${
+                        isOpen ? "rotate-45" : ""
+                      }`}
+                    >
+                      +
+                    </span>
+                  </button>
+
+                  <div
+                    className={`grid transition-all duration-300 ${
+                      isOpen
+                        ? "grid-rows-[1fr] opacity-100"
+                        : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="mt-4 max-w-3xl pr-8 text-sm leading-7 text-muted-foreground">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
