@@ -38,9 +38,8 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
       return "light";
     }
 
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
+    // New users start in light mode
+    return "light";
   });
 
   useEffect(() => {
