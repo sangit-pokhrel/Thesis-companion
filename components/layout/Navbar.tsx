@@ -204,8 +204,17 @@ export default function Navbar() {
 
   return (
     <header className="fixed left-0 right-0 top-0 z-50 px-3 pt-3 sm:px-4 lg:px-6">
-      {/* Subtle ambient accent */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-20 bg-linear-to-b from-accent/5 to-transparent dark:from-accent/6" />
+      {/* Subtle upper glass blend */}
+      <div
+        className="
+          pointer-events-none absolute inset-x-0 top-0 -z-10
+          h-24
+          bg-background/45
+          backdrop-blur-[6px]
+          [mask-image:linear-gradient(to_bottom,black_0%,black_35%,transparent_100%)]
+          dark:bg-background/35
+        "
+      />
 
       <div className="mx-auto max-w-7xl">
         {/* =====================================================
@@ -216,12 +225,11 @@ export default function Navbar() {
             relative flex h-17.5 items-center justify-between
             rounded-2xl
             border border-border/70
-            bg-background/90
+            bg-background/95
             px-3
             shadow-sm
-            backdrop-blur-xl
             transition-colors duration-300
-            dark:bg-background/90
+            dark:bg-background/95
             dark:shadow-none
           "
         >
