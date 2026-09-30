@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { ArrowLeft, ArrowRight, Star } from "lucide-react";
 
 import { useLanguage } from "@/components/language/LanguageProvider";
 import { images } from "@/lib/images";
@@ -1342,8 +1343,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      
       {/* TESTIMONIALS */}
-      {/* TESTIMONIALS */}
+
       <section className="bg-background">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
           {/* HEADER */}
@@ -1352,7 +1354,7 @@ export default function HomePage() {
               <div className="flex items-center gap-3">
                 <span className="h-px w-8 bg-primary" />
 
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
                   {home.experiences}
                 </p>
               </div>
@@ -1360,9 +1362,15 @@ export default function HomePage() {
               <h2 className="mt-5 max-w-2xl text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-4xl lg:text-5xl">
                 {home.experiencesHeading}
               </h2>
+
+              <p className="mt-5 max-w-xl text-sm leading-7 text-muted-foreground">
+                {language === "en"
+                  ? "Thoughts and experiences from people who have worked through their research journey with us."
+                  : "हामीसँग आफ्नो अनुसन्धान यात्रामा काम गरेका व्यक्तिहरूका अनुभवहरू।"}
+              </p>
             </div>
 
-            {/* Counter */}
+            {/* Desktop Counter */}
             <div className="hidden items-center gap-3 text-xs font-medium tracking-[0.15em] text-muted-foreground sm:flex">
               <span>{String(testimonialIndex + 1).padStart(2, "0")}</span>
 
@@ -1386,51 +1394,90 @@ export default function HomePage() {
                 }%)`,
               }}
             >
-              {currentTestimonials.map((testimonial, index) => (
-                <div
-                  key={`${testimonial.name}-${index}`}
-                  className="w-full shrink-0 basis-full px-2 md:basis-1/2 lg:basis-1/3"
-                >
-                  <figure className="group flex h-full min-h-[310px] flex-col justify-between rounded-2xl border border-border bg-muted/40 p-7 transition-all duration-300 hover:border-primary/20 hover:bg-muted/60 sm:p-8">
-                    {/* Quote */}
-                    <div>
-                      <div className="text-5xl font-serif leading-none text-accent/80">
+              {currentTestimonials.map((testimonial, index) => {
+                /*
+                 * 15 testimonials:
+                 * 3 → 3 stars
+                 * 6 → 4 stars
+                 * 6 → 5 stars
+                 *
+                 * The pattern is distributed rather than putting
+                 * all 3-star reviews together.
+                 */
+                const ratingPattern = [
+                  5, 4, 5, 4, 3, 5, 4, 5, 4, 3, 5, 4, 5, 4, 3,
+                ];
+
+                const rating = ratingPattern[index % ratingPattern.length];
+
+                return (
+                  <div
+                    key={`${testimonial.name}-${index}`}
+                    className="w-full shrink-0 basis-full px-2 md:basis-1/2 lg:basis-1/3"
+                  >
+                    <figure className="group relative flex h-full min-h-[350px] flex-col justify-between overflow-hidden rounded-[1.75rem] border border-border bg-muted/30 p-7 transition-all duration-500 hover:-translate-y-1 hover:border-primary/20 hover:bg-muted/50 hover:shadow-xl sm:p-9">
+                      {/* Top Accent */}
+                      <div className="absolute left-0 top-0 h-1 w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+
+                      {/* Large Quote */}
+                      <div className="pointer-events-none absolute right-6 top-1 select-none font-serif text-[100px] leading-none text-accent/10 transition-colors duration-500 group-hover:text-accent/20">
                         “
                       </div>
 
-                      <blockquote className="mt-5 text-base leading-7 text-foreground sm:text-[17px]">
-                        {testimonial.quote}
-                      </blockquote>
-                    </div>
-
-                    {/* Author */}
-                    <figcaption className="mt-10 border-t border-border pt-5">
-                      <div className="flex items-end justify-between gap-4">
-                        <div>
-                          <p className="text-sm font-semibold text-foreground">
-                            {testimonial.name}
-                          </p>
-
-                          <p className="mt-1 text-xs text-muted-foreground">
-                            {testimonial.role}
-                          </p>
+                      {/* REVIEW */}
+                      <div className="relative z-10">
+                        {/* Stars */}
+                        <div
+                          className="flex items-center gap-1"
+                          aria-label={`${rating} out of 5 stars`}
+                        >
+                          {[1, 2, 3, 4, 5].map((starNumber) => (
+                            <Star
+                              key={starNumber}
+                              size={16}
+                              strokeWidth={1.8}
+                              className={
+                                starNumber <= rating
+                                  ? "fill-accent text-accent"
+                                  : "text-border"
+                              }
+                            />
+                          ))}
                         </div>
 
-                        <span className="text-xs font-bold tracking-[0.15em] text-primary">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
+                        {/* Review Text */}
+                        <blockquote className="mt-7 text-[17px] leading-8 text-foreground sm:text-lg">
+                          “{testimonial.quote}”
+                        </blockquote>
                       </div>
-                    </figcaption>
-                  </figure>
-                </div>
-              ))}
+
+                      {/* AUTHOR */}
+                      <figcaption className="relative z-10 mt-10 border-t border-border pt-6">
+                        <div className="flex items-center justify-between gap-4">
+                          <div>
+                            <p className="text-sm font-semibold text-foreground">
+                              {testimonial.name}
+                            </p>
+
+                            <p className="mt-1 text-xs leading-5 text-muted-foreground">
+                              {testimonial.role}
+                            </p>
+                          </div>
+
+                        
+                        </div>
+                      </figcaption>
+                    </figure>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
           {/* CONTROLS */}
-          <div className="mt-8 flex items-center justify-between">
-            {/* Progress */}
-            <div className="flex items-center gap-2">
+          <div className="mt-8 flex flex-col items-center gap-5 sm:flex-row sm:items-center sm:justify-between">
+            {/* Moving Notifier / Progress */}
+            <div className="order-2 flex items-center gap-2 sm:order-1">
               {currentTestimonials.map((_, index) => (
                 <button
                   key={index}
@@ -1454,24 +1501,24 @@ export default function HomePage() {
               ))}
             </div>
 
-            {/* Previous / Next */}
-            <div className="flex items-center gap-2">
+            {/* Arrows */}
+            <div className="order-1 flex items-center justify-center gap-2 sm:order-2">
               <button
                 type="button"
                 onClick={goToPreviousTestimonial}
                 aria-label="Previous testimonials"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-foreground transition-all duration-300 hover:border-primary hover:bg-primary hover:text-primary-foreground"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-foreground transition-all duration-300 hover:-translate-x-0.5 hover:border-primary hover:bg-primary hover:text-primary-foreground"
               >
-                ←
+                <ArrowLeft size={18} strokeWidth={1.8} />
               </button>
 
               <button
                 type="button"
                 onClick={goToNextTestimonial}
                 aria-label="Next testimonials"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-foreground transition-all duration-300 hover:border-primary hover:bg-primary hover:text-primary-foreground"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background text-foreground transition-all duration-300 hover:translate-x-0.5 hover:border-primary hover:bg-primary hover:text-primary-foreground"
               >
-                →
+                <ArrowRight size={18} strokeWidth={1.8} />
               </button>
             </div>
           </div>
