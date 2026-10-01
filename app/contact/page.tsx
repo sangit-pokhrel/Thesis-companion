@@ -755,9 +755,9 @@ export default function ContactPage() {
               </div>
 
               <a
-                href="https://www.google.com/maps/search/?api=1&query=Kathmandu%2C%20Nepal"
+                href="https://www.google.com/maps/search/?api=1&query=27.6745111,85.3805302"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-accent dark:text-accent"
               >
                 {language === "en"
@@ -771,10 +771,10 @@ export default function ContactPage() {
               <iframe
                 title={
                   language === "en"
-                    ? "Thesis Companion location in Kathmandu"
-                    : "चरदोबाटोमा Thesis Companion को स्थान"
+                    ? "Artova Solutions Pvt Ltd location"
+                    : "Artova Solutions Pvt Ltd को स्थान"
                 }
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.7!2d85.39!3d27.67!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb10d4839f86b1%3A0x1e8d285c005f9c1e!2sArtova%20Solutions%20Pvt%20Ltd!5e0!3m2!1sen!2snp!4v1710000000000"
+                src="https://www.google.com/maps?q=Artova+Solutions+Pvt+Ltd,+27.6745111,85.3805302&output=embed"
                 className="h-[360px] w-full border-0 sm:h-[430px]"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

@@ -163,7 +163,7 @@ export default function ResourcesClient() {
       <section className="bg-background">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
           <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
               {resources.browse}
             </p>
 
@@ -180,7 +180,7 @@ export default function ResourcesClient() {
                 className="group rounded-xl border border-border bg-muted/40 p-6 transition-all hover:-translate-y-1 hover:bg-muted hover:shadow-md"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-semibold text-primary">
+                  <span className="text-sm font-semibold text-muted-foreground">
                     0{index + 1}
                   </span>
 
@@ -238,7 +238,7 @@ export default function ResourcesClient() {
       {/* CTA */}
       <section className="border-t border-border bg-muted/40">
         <div className="mx-auto max-w-7xl px-6 py-20 text-center lg:px-8 lg:py-28">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
             {resources.ctaLabel}
           </p>
 

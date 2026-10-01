@@ -199,7 +199,7 @@ export default function AboutPage() {
           </div>
 
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
               {about.whoWeAre}
             </p>
 
@@ -235,7 +235,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
           <div className="grid items-center gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                 {about.approach}
               </p>
 
@@ -267,7 +267,7 @@ export default function AboutPage() {
             <div className="grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2">
               {currentPrinciples.map((item) => (
                 <div key={item.number} className="bg-background p-7 sm:p-8">
-                  <span className="text-sm font-semibold text-primary">
+                  <span className="text-sm font-semibold text-muted-foreground">
                     {item.number}
                   </span>
 
@@ -392,7 +392,7 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="border-t border-border bg-muted/40">
         <div className="mx-auto max-w-7xl px-5 py-20 text-center sm:px-6 lg:px-8 lg:py-28">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
             {about.ctaLabel}
           </p>
 
