@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 
 import "./globals.css";
 
@@ -30,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -41,6 +42,12 @@ export default function RootLayout({
             <main>{children}</main>
 
             <Footer />
+            <Toaster
+              position="top-right"
+              toastOptions={{
+                duration: 4000,
+              }}
+            />
           </LanguageProvider>
         </ThemeProvider>
       </body>

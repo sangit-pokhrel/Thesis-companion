@@ -11,6 +11,7 @@ import {
   MessageCircle,
   Phone,
 } from "lucide-react";
+import toast from "react-hot-toast";
 
 import { useLanguage } from "@/components/language/LanguageProvider";
 import { images } from "@/lib/images";
@@ -150,6 +151,12 @@ export default function ContactPage() {
     const form = event.currentTarget;
     const formData = new FormData(form);
 
+    const toastId = toast.loading(
+      language === "en"
+        ? "Submitting your request..."
+        : "तपाईंको अनुरोध पठाउँदै...",
+    );
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -159,12 +166,42 @@ export default function ContactPage() {
         body: JSON.stringify(Object.fromEntries(formData.entries())),
       });
 
-      if (!response.ok) return;
+      const data = await response.json();
 
-      setSubmitted(true);
+      if (!response.ok) {
+        toast.error(
+          data?.message ||
+            (language === "en"
+              ? "Please check your information and try again."
+              : "कृपया आफ्नो जानकारी जाँच गरेर पुनः प्रयास गर्नुहोस्।"),
+          {
+            id: toastId,
+          },
+        );
+
+        return;
+      }
+
+      toast.success(
+        language === "en"
+          ? "Your request has been submitted successfully."
+          : "तपाईंको अनुरोध सफलतापूर्वक पठाइएको छ।",
+        {
+          id: toastId,
+        },
+      );
+
       form.reset();
+      setSubmitted(true);
     } catch {
-      // Keep the existing page state unchanged if the request fails.
+      toast.error(
+        language === "en"
+          ? "Something went wrong. Please try again."
+          : "केही समस्या भयो। कृपया पुनः प्रयास गर्नुहोस्।",
+        {
+          id: toastId,
+        },
+      );
     } finally {
       setSubmitting(false);
     }
@@ -379,6 +416,7 @@ export default function ContactPage() {
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent">
                   {contact.heading}
                 </p>
+
                 <p className="mt-2 text-sm text-muted-foreground">
                   {copy.required}
                 </p>
@@ -390,6 +428,7 @@ export default function ContactPage() {
             </div>
 
             <div className="grid gap-5 sm:grid-cols-2">
+              {/* Full Name */}
               <div>
                 <label
                   htmlFor="name"
@@ -397,6 +436,7 @@ export default function ContactPage() {
                 >
                   {contact.name}
                 </label>
+
                 <input
                   id="name"
                   name="name"
@@ -407,6 +447,7 @@ export default function ContactPage() {
                 />
               </div>
 
+              {/* Email */}
               <div>
                 <label
                   htmlFor="email"
@@ -414,6 +455,7 @@ export default function ContactPage() {
                 >
                   {contact.email}
                 </label>
+
                 <input
                   id="email"
                   name="email"
@@ -424,6 +466,7 @@ export default function ContactPage() {
                 />
               </div>
 
+              {/* Phone / WhatsApp */}
               <div>
                 <label
                   htmlFor="phone"
@@ -431,6 +474,7 @@ export default function ContactPage() {
                 >
                   {contact.phone}
                 </label>
+
                 <input
                   id="phone"
                   name="phone"
@@ -440,6 +484,32 @@ export default function ContactPage() {
                 />
               </div>
 
+              {/* Preferred Contact Method */}
+              <div>
+                <label
+                  htmlFor="contactMethod"
+                  className="text-sm font-semibold text-foreground"
+                >
+                  Preferred Contact Method
+                </label>
+
+                <select
+                  id="contactMethod"
+                  name="contactMethod"
+                  required
+                  defaultValue=""
+                  className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition-all focus:border-primary focus:ring-4 focus:ring-primary/5"
+                >
+                  <option value="" disabled>
+                    Select contact method
+                  </option>
+                  <option value="Email">Email</option>
+                  <option value="WhatsApp">WhatsApp</option>
+                  <option value="Phone">Phone</option>
+                </select>
+              </div>
+
+              {/* Degree Level */}
               <div>
                 <label
                   htmlFor="academicLevel"
@@ -447,6 +517,7 @@ export default function ContactPage() {
                 >
                   {contact.academicLevel}
                 </label>
+
                 <select
                   id="academicLevel"
                   name="academicLevel"
@@ -457,6 +528,7 @@ export default function ContactPage() {
                   <option value="" disabled>
                     {contact.levelPlaceholder}
                   </option>
+
                   {currentLevels.map((level) => (
                     <option key={level} value={level}>
                       {level}
@@ -465,6 +537,64 @@ export default function ContactPage() {
                 </select>
               </div>
 
+              {/* University */}
+              <div>
+                <label
+                  htmlFor="university"
+                  className="text-sm font-semibold text-foreground"
+                >
+                  University / Institution
+                </label>
+
+                <input
+                  id="university"
+                  name="university"
+                  type="text"
+                  required
+                  placeholder="Enter your university or institution"
+                  className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-4 focus:ring-primary/5"
+                />
+              </div>
+
+              {/* Faculty / Department */}
+              <div>
+                <label
+                  htmlFor="faculty"
+                  className="text-sm font-semibold text-foreground"
+                >
+                  Faculty / Department
+                </label>
+
+                <input
+                  id="faculty"
+                  name="faculty"
+                  type="text"
+                  required
+                  placeholder="Enter your faculty or department"
+                  className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-4 focus:ring-primary/5"
+                />
+              </div>
+
+              {/* Program / Specialisation */}
+              <div>
+                <label
+                  htmlFor="program"
+                  className="text-sm font-semibold text-foreground"
+                >
+                  Program / Specialisation
+                </label>
+
+                <input
+                  id="program"
+                  name="program"
+                  type="text"
+                  required
+                  placeholder="Enter your program or specialisation"
+                  className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-4 focus:ring-primary/5"
+                />
+              </div>
+
+              {/* Service */}
               <div className="sm:col-span-2">
                 <label
                   htmlFor="service"
@@ -472,6 +602,7 @@ export default function ContactPage() {
                 >
                   {contact.service}
                 </label>
+
                 <select
                   id="service"
                   name="service"
@@ -482,6 +613,7 @@ export default function ContactPage() {
                   <option value="" disabled>
                     {contact.servicePlaceholder}
                   </option>
+
                   {currentServices.map((service) => (
                     <option key={service} value={service}>
                       {service}
@@ -490,6 +622,63 @@ export default function ContactPage() {
                 </select>
               </div>
 
+              {/* Deadline */}
+              <div>
+                <label
+                  htmlFor="deadline"
+                  className="text-sm font-semibold text-foreground"
+                >
+                  Deadline
+                </label>
+
+                <input
+                  id="deadline"
+                  name="deadline"
+                  type="date"
+                  className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition-all focus:border-primary focus:ring-4 focus:ring-primary/5"
+                />
+              </div>
+
+              {/* Word Count */}
+              <div>
+                <label
+                  htmlFor="wordCount"
+                  className="text-sm font-semibold text-foreground"
+                >
+                  Approximate Word Count
+                </label>
+
+                <input
+                  id="wordCount"
+                  name="wordCount"
+                  type="number"
+                  min="0"
+                  max="1000000"
+                  placeholder="e.g. 15,000"
+                  className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-4 focus:ring-primary/5"
+                />
+              </div>
+
+              {/* Research Topic */}
+              <div className="sm:col-span-2">
+                <label
+                  htmlFor="researchTopic"
+                  className="text-sm font-semibold text-foreground"
+                >
+                  Research Topic
+                </label>
+
+                <input
+                  id="researchTopic"
+                  name="researchTopic"
+                  type="text"
+                  required
+                  placeholder="Enter your research topic or working title"
+                  className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-4 focus:ring-primary/5"
+                />
+              </div>
+
+              {/* Detailed Message */}
               <div className="sm:col-span-2">
                 <label
                   htmlFor="message"
@@ -497,6 +686,7 @@ export default function ContactPage() {
                 >
                   {contact.message}
                 </label>
+
                 <textarea
                   id="message"
                   name="message"
@@ -526,6 +716,7 @@ export default function ContactPage() {
                       ? "Sending..."
                       : "पठाउँदै..."
                     : contact.submit}
+
                   {!submitting && <ArrowRight className="h-4 w-4" />}
                 </button>
               </div>
