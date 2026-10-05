@@ -32,7 +32,7 @@ export type ResourceGuide = {
 export const resourceGuides: ResourceGuide[] = [
   {
     slug: "how-to-choose-a-research-topic",
-    image: "/images/resources/research-planning.jpg",
+    image: "/images/resources/research.jpg",
     number: "01",
     category: {
       en: "Research Planning",
@@ -218,7 +218,7 @@ export const resourceGuides: ResourceGuide[] = [
   },
   {
     slug: "research-methodology",
-    image: "/images/resources/methodology.jpg",
+    image: "/images/resources/method.jpg",
     number: "03",
     category: {
       en: "Methodology",
