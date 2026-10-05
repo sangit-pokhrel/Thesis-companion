@@ -15,21 +15,15 @@ export const images = {
     },
 
     services: {
-      researchProposal:
-        "/images/home/services/research-proposal.jpg",
-      literatureReview:
-        "/images/home/services/literature-review.jpg",
-      methodology:
-        "/images/home/services/methodology.jpg",
-      dataAnalysis:
-        "/images/home/services/data-analysis.jpg",
-      academicWriting:
-        "/images/home/services/academic-writing.jpg",
-      thesisSupport:
-        "/images/home/services/thesis-support.jpg",
+      researchProposal: "/images/home/services/research-proposal.jpg",
+      literatureReview: "/images/home/services/literature-review.jpg",
+      methodology: "/images/home/services/methodology.jpg",
+      dataAnalysis: "/images/home/services/data-analysis.jpg",
+      academicWriting: "/images/home/services/academic-writing.jpg",
+      thesisSupport: "/images/home/services/thesis-support.jpg",
     },
 
-    about: "/images/home/about.jpg",
+    about: "/images/home/about.png",
     whyUs1: "/images/home/why-us1.jpg",
     whyUs2: "/images/home/why-us2.jpg",
     whyUs: "/images/home/why-us.jpg",
@@ -47,45 +41,33 @@ export const images = {
   services: {
     hero: "/images/services/hero.jpg",
 
-    researchProposal:
-      "/images/services/research-proposal.jpg",
+    researchProposal: "/images/services/research.jpg",
 
-    literatureReview:
-      "/images/services/literature-review.jpg",
+    literatureReview: "/images/services/literature-review.jpg",
 
-    methodology:
-      "/images/services/methodology.jpg",
+    methodology: "/images/services/method.jpg",
 
-    dataAnalysis:
-      "/images/services/data-analysis.jpg",
+    dataAnalysis: "/images/services/data.jpg",
 
-    academicWriting:
-      "/images/services/academic-writing.jpg",
+    academicWriting: "/images/services/academic-writing.jpg",
 
-    thesisSupport:
-      "/images/services/thesis-support.jpg",
+    thesisSupport: "/images/services/thesis-support.png",
   },
 
   resources: {
     hero: "/images/resources/hero.jpg",
 
-    researchPlanning:
-      "/images/resources/research-planning.jpg",
+    researchPlanning: "/images/resources/research.jpg",
 
-    proposal:
-      "/images/resources/proposal.jpg",
+    proposal: "/images/resources/proposal.jpg",
 
-    literatureReview:
-      "/images/resources/literature-review.jpg",
+    literatureReview: "/images/resources/literature-review.jpg",
 
-    methodology:
-      "/images/resources/methodology.jpg",
+    methodology: "/images/resources/method.jpg",
 
-    dataAnalysis:
-      "/images/resources/data-analysis.jpg",
+    dataAnalysis: "/images/resources/data-analysis.jpg",
 
-    academicWriting:
-      "/images/resources/academic-writing.jpg",
+    academicWriting: "/images/resources/academic-writing.jpg",
   },
 
   contact: {

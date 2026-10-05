@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 import { useLanguage } from "@/components/language/LanguageProvider";
 import { resourceGuides, type ResourceGuide } from "@/lib/resources";
@@ -15,6 +16,8 @@ export default function ResourceGuideClient({
 }: ResourceGuideClientProps) {
   const { language } = useLanguage();
   const content = guide[language];
+
+  const [activeSection, setActiveSection] = useState("section-1");
 
   const relatedGuides = resourceGuides
     .filter((item) => item.slug !== guide.slug)
@@ -47,6 +50,46 @@ export default function ResourceGuideClient({
           contact: "सम्पर्क गर्नुहोस्",
         };
 
+  /*
+   * Detect the section currently visible in the article
+   * and highlight it inside the Table of Contents.
+   */
+  useEffect(() => {
+    const sections = content.sections.map(
+      (_, index) => `section-${index + 1}`
+    );
+
+    const sectionElements = sections
+      .map((id) => document.getElementById(id))
+      .filter((element): element is HTMLElement => element !== null);
+
+    if (!sectionElements.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) =>
+              Math.abs(a.boundingClientRect.top) -
+              Math.abs(b.boundingClientRect.top)
+          );
+
+        if (visibleEntries.length > 0) {
+          setActiveSection(visibleEntries[0].target.id);
+        }
+      },
+      {
+        rootMargin: "-18% 0px -65% 0px",
+        threshold: 0,
+      }
+    );
+
+    sectionElements.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, [content.sections]);
+
   return (
     <div>
       {/* Header */}
@@ -62,44 +105,44 @@ export default function ResourceGuideClient({
       </section>
 
       {/* Hero */}
-      <section className="bg-background">
-        <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8 lg:py-20">
-          <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-            <div>
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-                  {ui.guide}
-                </span>
+      <section className="relative min-h-[520px] overflow-hidden">
+        <Image
+          src={guide.image}
+          alt={content.title}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
 
-                <span className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
-                  {guide.category[language]}
-                </span>
-              </div>
+        <div className="absolute inset-0 bg-primary/55" />
 
-              <h1 className="mt-6 max-w-3xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-                {content.title}
-              </h1>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/75 to-primary/55" />
 
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
-                {content.description}
-              </p>
+        <div className="relative z-10 mx-auto flex min-h-[520px] max-w-7xl items-center px-6 py-24 lg:px-8 lg:py-28">
+          <div className="max-w-4xl text-white">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="rounded-full bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-accent-foreground">
+                {ui.guide}
+              </span>
 
-              <div className="mt-7 flex items-center gap-3 text-sm font-medium text-muted-foreground">
-                <span>{guide.number}</span>
-                <span aria-hidden="true">•</span>
-                <span>{guide.readTime[language]}</span>
-              </div>
+              <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/85 backdrop-blur-sm">
+                {guide.category[language]}
+              </span>
             </div>
 
-            <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-border shadow-sm">
-              <Image
-                src={guide.image}
-                alt={content.title}
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
+            <h1 className="mt-6 max-w-4xl text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+              {content.title}
+            </h1>
+
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-white/80">
+              {content.description}
+            </p>
+
+            <div className="mt-7 flex items-center gap-3 text-sm font-medium text-white/70">
+              <span>{guide.number}</span>
+              <span aria-hidden="true">•</span>
+              <span>{guide.readTime[language]}</span>
             </div>
           </div>
         </div>
@@ -116,20 +159,30 @@ export default function ResourceGuideClient({
                   {ui.tableOfContents}
                 </p>
 
-                <nav className="mt-5 space-y-3">
-                  {content.sections.map((section, index) => (
-                    <a
-                      key={section.heading}
-                      href={`#section-${index + 1}`}
-                      className="block text-sm leading-6 text-muted-foreground transition-colors hover:text-primary"
-                    >
-                      {index + 1}. {section.heading}
-                    </a>
-                  ))}
+                <nav className="mt-5 space-y-2">
+                  {content.sections.map((section, index) => {
+                    const sectionId = `section-${index + 1}`;
+                    const isActive = activeSection === sectionId;
+
+                    return (
+                      <a
+                        key={section.heading}
+                        href={`#${sectionId}`}
+                        onClick={() => setActiveSection(sectionId)}
+                        className={`block rounded-lg border-l-2 px-3 py-2 text-sm leading-6 transition-all ${
+                          isActive
+                            ? "border-accent bg-accent/10 font-semibold text-primary"
+                            : "border-transparent text-muted-foreground hover:border-primary/30 hover:bg-muted/60 hover:text-primary"
+                        }`}
+                      >
+                        {index + 1}. {section.heading}
+                      </a>
+                    );
+                  })}
 
                   <a
                     href="#quick-checklist"
-                    className="block text-sm font-semibold leading-6 text-muted-foreground"
+                    className="block rounded-lg border-l-2 border-transparent px-3 py-2 text-sm font-semibold leading-6 text-muted-foreground transition-colors hover:border-primary/30 hover:bg-muted/60 hover:text-primary"
                   >
                     {content.sections.length + 1}. {ui.quickChecklist}
                   </a>
@@ -233,7 +286,9 @@ export default function ResourceGuideClient({
                   </p>
 
                   <span className="mt-5 inline-block text-sm font-semibold text-muted-foreground transition-transform group-hover:translate-x-1">
-                    {language === "en" ? "Read guide →" : "गाइड पढ्नुहोस् →"}
+                    {language === "en"
+                      ? "Read guide →"
+                      : "गाइड पढ्नुहोस् →"}
                   </span>
                 </div>
               </Link>

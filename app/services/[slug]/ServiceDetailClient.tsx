@@ -70,9 +70,9 @@ export default function ServiceDetailClient({ service }: { service: Service }) {
             </nav>
 
             <div className="flex items-center gap-4">
-              <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-white/20 bg-white/10 text-sm font-bold text-accent backdrop-blur-sm">
+              {/* <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-white/20 bg-white/10 text-sm font-bold text-accent backdrop-blur-sm">
                 {localizedService.number}
-              </span>
+              </span> */}
 
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
                 {language === "en" ? "Research Support" : "अनुसन्धान सहयोग"}

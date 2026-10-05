@@ -128,7 +128,7 @@ export default function HomePage() {
         title: "Research Topic & Proposal",
         description:
           "Develop a clear research direction, proposal structure, objectives, and questions.",
-        image: images.home.services.researchProposal,
+        image: images.services.researchProposal,
         href: "/services/research-proposal",
       },
       {
@@ -136,7 +136,7 @@ export default function HomePage() {
         title: "Literature Review",
         description:
           "Organise academic sources, identify themes, and develop a meaningful research gap.",
-        image: images.home.services.literatureReview,
+        image: images.services.literatureReview,
         href: "/services/literature-review",
       },
       {
@@ -144,7 +144,7 @@ export default function HomePage() {
         title: "Research Methodology",
         description:
           "Build a suitable methodology aligned with your research objectives and questions.",
-        image: images.home.services.methodology,
+        image: images.services.methodology,
         href: "/services/methodology",
       },
       {
@@ -152,7 +152,7 @@ export default function HomePage() {
         title: "Data Analysis",
         description:
           "Prepare, analyse, interpret, and present your research data effectively.",
-        image: images.home.services.dataAnalysis,
+        image: images.services.dataAnalysis,
         href: "/services/data-analysis",
       },
       {
@@ -160,7 +160,7 @@ export default function HomePage() {
         title: "Academic Writing",
         description:
           "Improve the structure, clarity, flow, and academic presentation of your work.",
-        image: images.home.services.academicWriting,
+        image: images.services.academicWriting,
         href: "/services/academic-writing",
       },
       {
@@ -168,7 +168,7 @@ export default function HomePage() {
         title: "Thesis & Dissertation",
         description:
           "Get structured support throughout the major stages of your thesis or dissertation.",
-        image: images.home.services.thesisSupport,
+        image: images.services.thesisSupport,
         href: "/services/thesis-dissertation",
       },
     ],
@@ -178,7 +178,7 @@ export default function HomePage() {
         title: "अनुसन्धान विषय तथा प्रस्ताव",
         description:
           "अनुसन्धानको दिशा, प्रस्ताव संरचना, उद्देश्य तथा प्रश्न विकास गर्न सहयोग।",
-        image: images.home.services.researchProposal,
+        image: images.services.researchProposal,
         href: "/services/research-proposal",
       },
       {
@@ -186,7 +186,7 @@ export default function HomePage() {
         title: "साहित्य समीक्षा",
         description:
           "शैक्षिक स्रोतहरू व्यवस्थित गर्दै विषयगत पक्ष तथा अनुसन्धान रिक्तता पहिचान गर्न सहयोग।",
-        image: images.home.services.literatureReview,
+        image: images.services.literatureReview,
         href: "/services/literature-review",
       },
       {
@@ -194,7 +194,7 @@ export default function HomePage() {
         title: "अनुसन्धान विधि",
         description:
           "अनुसन्धान उद्देश्य तथा प्रश्नसँग मिल्ने उपयुक्त अनुसन्धान विधि विकास गर्न सहयोग।",
-        image: images.home.services.methodology,
+        image: images.services.methodology,
         href: "/services/methodology",
       },
       {
@@ -202,7 +202,7 @@ export default function HomePage() {
         title: "डाटा विश्लेषण",
         description:
           "अनुसन्धान डाटा तयार, विश्लेषण, व्याख्या तथा प्रभावकारी रूपमा प्रस्तुत गर्न सहयोग।",
-        image: images.home.services.dataAnalysis,
+        image: images.services.dataAnalysis,
         href: "/services/data-analysis",
       },
       {
@@ -210,14 +210,14 @@ export default function HomePage() {
         title: "शैक्षिक लेखन",
         description:
           "अनुसन्धान कार्यको संरचना, स्पष्टता, प्रवाह तथा शैक्षिक प्रस्तुति सुधार गर्न सहयोग।",
-        image: images.home.services.academicWriting,
+        image: images.services.academicWriting,
         href: "/services/academic-writing",
       },
       {
         number: "०६",
         title: "थेसिस तथा डिसर्टेसन",
         description: "थेसिस वा डिसर्टेसनका प्रमुख चरणहरूमा संरचित सहयोग।",
-        image: images.home.services.thesisSupport,
+        image: images.services.thesisSupport,
         href: "/services/thesis-dissertation",
       },
     ],
