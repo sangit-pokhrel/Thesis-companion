@@ -3,6 +3,7 @@ import { ValidationError } from "yup";
 
 import { contactSchema } from "@/lib/validation/contactSchema";
 import { addContactToGoogleSheet } from "@/lib/googleSheets";
+import { sendContactEmails } from "@/lib/email";
 
 export async function POST(request: Request) {
   try {
@@ -13,7 +14,6 @@ export async function POST(request: Request) {
         .filter(Boolean) ?? [];
 
     const origin = request.headers.get("origin")?.replace(/\/$/, "");
-
 
     if (!origin || !allowedOrigins.includes(origin)) {
       return NextResponse.json(
@@ -32,8 +32,14 @@ export async function POST(request: Request) {
       stripUnknown: true,
     });
 
+    const submissionDate = new Date().toISOString();
+
+    /*
+     * Google Sheets is the primary submission storage.
+     * If this succeeds, the inquiry has been recorded successfully.
+     */
     await addContactToGoogleSheet({
-      date: new Date().toISOString(),
+      date: submissionDate,
       name: validatedData.name,
       email: validatedData.email,
       phone: validatedData.phone,
@@ -50,6 +56,37 @@ export async function POST(request: Request) {
       status: "NEW",
     });
 
+    /*
+     * Email is secondary.
+     *
+     * If SMTP temporarily fails, the Google Sheets submission
+     * has already succeeded, so the form should still succeed.
+     */
+    try {
+      await sendContactEmails({
+        date: submissionDate,
+        name: validatedData.name,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        contactMethod: validatedData.contactMethod,
+        academicLevel: validatedData.academicLevel,
+        university: validatedData.university,
+        faculty: validatedData.faculty,
+        program: validatedData.program,
+        service: validatedData.service,
+        deadline: validatedData.deadline,
+        wordCount: validatedData.wordCount,
+        researchTopic: validatedData.researchTopic,
+        message: validatedData.message,
+        status: "NEW",
+      });
+    } catch (emailError) {
+      console.error(
+        "SMTP email sending failed. Google Sheets submission was successful:",
+        emailError,
+      );
+    }
+
     return NextResponse.json(
       {
         success: true,
@@ -58,6 +95,9 @@ export async function POST(request: Request) {
       { status: 201 },
     );
   } catch (error) {
+    /*
+     * Validation errors
+     */
     if (error instanceof ValidationError) {
       return NextResponse.json(
         {
@@ -81,6 +121,9 @@ export async function POST(request: Request) {
       );
     }
 
+    /*
+     * Google Sheets or other unexpected errors
+     */
     console.error("Contact submission error:", error);
 
     return NextResponse.json(
