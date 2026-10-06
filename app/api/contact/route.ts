@@ -1,13 +1,30 @@
 import { NextResponse } from "next/server";
 import { ValidationError } from "yup";
 
-import { connectToDatabase } from "@/lib/mongodb";
-import { ContactSubmission } from "@/models/ContactSubmission";
 import { contactSchema } from "@/lib/validation/contactSchema";
 import { addContactToGoogleSheet } from "@/lib/googleSheets";
 
 export async function POST(request: Request) {
   try {
+    const allowedOrigins =
+      process.env.CONTACT_ALLOWED_ORIGINS
+        ?.split(",")
+        .map((origin) => origin.trim().replace(/\/$/, ""))
+        .filter(Boolean) ?? [];
+
+    const origin = request.headers.get("origin")?.replace(/\/$/, "");
+
+
+    if (!origin || !allowedOrigins.includes(origin)) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Unauthorized request.",
+        },
+        { status: 403 },
+      );
+    }
+
     const body = await request.json();
 
     const validatedData = await contactSchema.validate(body, {
@@ -15,40 +32,28 @@ export async function POST(request: Request) {
       stripUnknown: true,
     });
 
-    await connectToDatabase();
-
-    const submission = await ContactSubmission.create({
-      ...validatedData,
+    await addContactToGoogleSheet({
+      date: new Date().toISOString(),
+      name: validatedData.name,
+      email: validatedData.email,
+      phone: validatedData.phone,
+      contactMethod: validatedData.contactMethod,
+      academicLevel: validatedData.academicLevel,
+      university: validatedData.university,
+      faculty: validatedData.faculty,
+      program: validatedData.program,
+      service: validatedData.service,
+      deadline: validatedData.deadline,
+      wordCount: validatedData.wordCount,
+      researchTopic: validatedData.researchTopic,
+      message: validatedData.message,
       status: "NEW",
     });
-
-    try {
-      await addContactToGoogleSheet({
-        date: submission.createdAt.toISOString(),
-        name: submission.name,
-        email: submission.email,
-        phone: submission.phone,
-        contactMethod: submission.contactMethod,
-        academicLevel: submission.academicLevel,
-        university: submission.university,
-        faculty: submission.faculty,
-        program: submission.program,
-        service: submission.service,
-        deadline: submission.deadline,
-        wordCount: submission.wordCount,
-        researchTopic: submission.researchTopic,
-        message: submission.message,
-        status: submission.status,
-      });
-    } catch (googleSheetError) {
-      console.error("Google Sheets sync failed:", googleSheetError);
-    }
 
     return NextResponse.json(
       {
         success: true,
         message: "Your request has been submitted successfully.",
-        submissionId: submission._id.toString(),
       },
       { status: 201 },
     );
@@ -60,7 +65,10 @@ export async function POST(request: Request) {
           message: "Please check the information you entered.",
           errors: error.inner.reduce<Record<string, string>>(
             (accumulator, currentError) => {
-              if (currentError.path && !accumulator[currentError.path]) {
+              if (
+                currentError.path &&
+                !accumulator[currentError.path]
+              ) {
                 accumulator[currentError.path] = currentError.message;
               }
 
