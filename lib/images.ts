@@ -42,15 +42,10 @@ export const images = {
     hero: "/images/services/hero.jpg",
 
     researchProposal: "/images/services/research.jpg",
-
     literatureReview: "/images/services/literature-review.jpg",
-
     methodology: "/images/services/method.jpg",
-
     dataAnalysis: "/images/services/data.jpg",
-
     academicWriting: "/images/services/academic-writing.jpg",
-
     thesisSupport: "/images/services/thesis-support.png",
   },
 
@@ -58,16 +53,23 @@ export const images = {
     hero: "/images/resources/hero.jpg",
 
     researchPlanning: "/images/resources/research.jpg",
-
     proposal: "/images/resources/proposal.jpg",
-
     literatureReview: "/images/resources/literature-review.jpg",
-
     methodology: "/images/resources/method.jpg",
-
     dataAnalysis: "/images/resources/data-analysis.jpg",
-
     academicWriting: "/images/resources/academic-writing.jpg",
+  },
+
+  guidelines: {
+    agricultureForestry: "/images/guidelines/agriculture-forestry-uni.jpg",
+    bpKoirala: "/images/guidelines/bp-koirala-uni.jpg",
+    farWestern: "/images/guidelines/far-western-uni.jpg",
+    kathmandu: "/images/guidelines/kathmandu-uni.jpg",
+    midWestern: "/images/guidelines/mid-western-uni.jpg",
+    nepalSanskrit: "/images/guidelines/nepal-sanskrit-uni.jpg",
+    pokhara: "/images/guidelines/pokhara-uni.jpg",
+    purbanchal: "/images/guidelines/purbanchal-uni.jpg",
+    tribhuvan: "/images/guidelines/tribhuvan-uni.jpg",
   },
 
   contact: {

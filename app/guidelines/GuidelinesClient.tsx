@@ -37,6 +37,7 @@ export default function GuidelinesClient() {
             alt="Academic research and university guidelines"
             fill
             priority
+            sizes="100vw"
             className="object-cover"
           />
         </div>
@@ -215,6 +216,7 @@ export default function GuidelinesClient() {
                     src={university.image}
                     alt={university.name}
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover transition duration-500 group-hover:scale-105"
                   />
 

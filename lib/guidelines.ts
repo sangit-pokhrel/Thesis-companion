@@ -40,7 +40,7 @@ export const universities: UniversityGuideline[] = [
     name: "Tribhuvan University",
     description:
       "A comprehensive research and thesis guide based on the published Tribhuvan University Institute of Science and Technology Research Regulation, 2025.",
-    image: images.about.research,
+    image: images.guidelines.tribhuvan,
     lastVerified: "September 2026",
 
     verificationNote:
@@ -493,7 +493,7 @@ export const universities: UniversityGuideline[] = [
     name: "Pokhara University",
     description:
       "Research proposal, research process, and academic research resources published by Pokhara University and its Research Centre.",
-    image: images.services.researchProposal,
+    image: images.guidelines.pokhara,
     lastVerified: "September 2026",
 
     verificationNote:
@@ -664,7 +664,7 @@ export const universities: UniversityGuideline[] = [
     name: "Kathmandu University",
     description:
       "Research and thesis guidance based on Kathmandu University's Research Rules and school-specific research and thesis resources.",
-    image: images.about.workspace,
+    image: images.guidelines.kathmandu,
     lastVerified: "September 2026",
 
     verificationNote:
@@ -817,7 +817,7 @@ export const universities: UniversityGuideline[] = [
     name: "Purbanchal University",
     description:
       "Research proposal and academic research guidance based on Purbanchal University's Research Centre resources and published research notices.",
-    image: images.services.literatureReview,
+    image: images.guidelines.purbanchal,
     lastVerified: "September 2026",
 
     verificationNote:
@@ -969,7 +969,7 @@ export const universities: UniversityGuideline[] = [
     name: "Mid-Western University",
     description:
       "Research procedures and institutional research resources published by Mid-Western University.",
-    image: images.services.methodology,
+    image: images.guidelines.midWestern,
     lastVerified: "September 2026",
 
     verificationNote:
@@ -1113,7 +1113,7 @@ export const universities: UniversityGuideline[] = [
     name: "Far-Western University",
     description:
       "Research proposal, thesis, research documentation, and academic research guidance based on Far-Western University's published research resources.",
-    image: images.services.dataAnalysis,
+    image: images.guidelines.farWestern,
     lastVerified: "September 2026",
 
     verificationNote:
@@ -1304,7 +1304,7 @@ export const universities: UniversityGuideline[] = [
     name: "Agriculture and Forestry University",
     description:
       "Research proposal, research ethics, thesis, and institutional research guidance based on AFU Directorate of Research and Extension resources.",
-    image: images.services.thesisSupport,
+    image: images.guidelines.agricultureForestry,
     lastVerified: "September 2026",
 
     verificationNote:
@@ -1465,7 +1465,7 @@ export const universities: UniversityGuideline[] = [
     name: "Nepal Sanskrit University",
     description:
       "Research and academic guidance based on Nepal Sanskrit University's Research Centre resources and published research materials.",
-    image: images.resources.academicWriting,
+    image: images.guidelines.nepalSanskrit,
     lastVerified: "September 2026",
 
     verificationNote:
@@ -1616,7 +1616,7 @@ export const universities: UniversityGuideline[] = [
     name: "B.P. Koirala Institute of Health Sciences",
     description:
       "Health-science research protocol, ethics, participant documentation, data management, statistical analysis, and referencing guidance based on BPKIHS's thesis protocol guideline.",
-    image: images.services.dataAnalysis,
+    image: images.guidelines.bpKoirala,
     lastVerified: "September 2026",
 
     verificationNote:

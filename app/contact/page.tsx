@@ -62,7 +62,7 @@ export default function ContactPage() {
           phoneTitle: "WhatsApp / Phone",
           phoneText: "+977 970-5428105",
           responseTitle: "Response time",
-          responseText: "We usually respond within 24 hours.",
+          responseText: "We usually respond within an hour.",
           locationTitle: "Our location",
           locationText: "Chardobato, Nepal",
           formLabel: "Start a conversation",
